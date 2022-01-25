@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import theme from './theme'
 ReactDOM.render(
   <StrictMode>
-    <ColorModeScript initialColorMode={theme.config.initialColorMode} />
+    {/* <ColorModeScript initialColorMode={theme.config.initialColorMode} /> */}
     <App />
   </StrictMode>,
   document.getElementById('root')
