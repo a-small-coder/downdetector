@@ -1,9 +1,12 @@
-import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link, Text, } from '@chakra-ui/react';
+import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link,} from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
 import logo from '../img/mainLogo.png';
 import testAvatar from '../img/Avatar.png';
 import { SearchIcon } from '@chakra-ui/icons'
+import { setIsAutorizedAC } from '../redux/auth_reducer';
+import { connect } from 'react-redux';
+import HeaderUserInfo from './HeaderUserInfo';
 
 function Header(props) {
 
@@ -17,7 +20,7 @@ function Header(props) {
     }, [scrollY]);
 
     const userEmail = "someMail@.mail.ru"
-
+    
     return (
         <Box pos="relative">
             <chakra.header
@@ -66,19 +69,11 @@ function Header(props) {
                             justify="flex-end"
                             align="center"
                         >
-                            <HStack spacing={{base: '1', md:'5'}} display="flex">
-                                <Text fontSize='2xl' color='white' isTruncated maxW='130px' display={{ base: "none", lg: "block" }}>
-                                    {userEmail}
-                                </Text>
-                                <Image
-                                    src={testAvatar}
-                                    display="block"
-                                    transition="color 0.2s"
-                                    minW={{ base: "8", lg: "12" }}
-                                    minH={{ base: "8", lg: "12" }}
-                                    _hover={{ color: "gray.600" }}
-                                />
-                            </HStack>
+                            <HeaderUserInfo 
+                                isUserAuth={props.isAuth} 
+                                userEmail={userEmail} 
+                                userIcon={testAvatar}
+                            />
                         </Flex>
                     </Flex>
                 </chakra.div>
@@ -86,4 +81,19 @@ function Header(props) {
         </Box>
     );
 }
-export default Header;
+let mapStateToProps = (state) => {
+    return {
+        isAuth: state.auth.is_authorized
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        setIsAuth: (isAuth) => {
+            dispatch(setIsAutorizedAC(isAuth));
+        },
+    }
+}
+const HeaderContainer = connect(mapStateToProps, mapDispatchToProps)(Header);
+
+export default HeaderContainer;

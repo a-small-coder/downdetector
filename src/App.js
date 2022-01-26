@@ -5,16 +5,16 @@ import {
   ChakraProvider,
   extendTheme,
   Flex,
-  Image,
 } from '@chakra-ui/react';
 import Header from './components/Header';
-import StyleColorMode from './components/colorMode';
 import bgImage from './img/MainBackground.svg'
+import { setIsAutorizedAC } from './redux/auth_reducer';
+import { connect } from 'react-redux';
+import HeaderContainer from './components/Header';
 
 
 const theme = extendTheme({
   global: {
-    // styles for the `body`
     body: {
       color: 'white',
     },
@@ -27,39 +27,64 @@ const theme = extendTheme({
   },
 })
 
-function App() {
+function App(props) {
   return (
     <ChakraProvider theme={theme}>
-      {/* <Flex
-      direction="column"
-      align="center"
-      m="0 auto"
-      border='2px solid'
-      bg='#2D3748'
-      pos='relative'
-    >
-      <Image src={bgImage} />
-    </Flex> */}
-
-    <Box bg='#2D3748' py='16' px={{base: '5', md:'calc(100vw - 90%)'}} backgroundImage={bgImage}>
-
-      <chakra.div
-      h="calc(100vh - 128px)" 
-      mx="auto" 
-      bg='brand.200' 
-      borderRadius='16'
-      py={{base: '0', lg: '6'}}
-      px='6'
+      <Box 
+        bg='#2D3748' 
+        py={{ base: '4', md: '8', lg: '12', xl: '16' }} 
+        px={{ base: '5', md: 'calc(100vw - 90%)' }} 
+        backgroundImage={bgImage}
       >
-        <Flex direction='column'>
-          <Header/>
-        </Flex>
-      </chakra.div>
+        <chakra.div
+          minH={{ base: 'calc(100vh - 32px)', md: 'calc(100vh - 48px)', lg: 'calc(100vh - 96px)', xl: 'calc(100vh - 128px)' }}
+          mx="auto"
+          bg='brand.200'
+          borderRadius='16'
+          py={{ base: '0', lg: '6' }}
+          px='6'
+        >
+          <Flex direction='column'>
+            <HeaderContainer/>
+            <p>
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
 
-    </Box>
-      
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action)
+              ayout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              ayout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              ayout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action):
+              Here's a simple example of a marketing page component that uses a stacked layout on small screens, and a side-by-side layout on larger screens (resize your browser to see it in action)::
+            </p>
+          </Flex>
+        </chakra.div>
+      </Box>
     </ChakraProvider>
   );
 }
 
-export default App;
+export default App
