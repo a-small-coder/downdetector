@@ -1,17 +1,14 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, HStack, Image, Text, useDisclosure } from '@chakra-ui/react';
 import AuthFormModal from './AuthFormModal';
 import singinIcon from '../img/ExitIcon.png'
 
 function Authorization(props) {
-    const [isLoginForm, setIsLoginForm] = useState(true)
     const { isOpen, onOpen, onClose } = useDisclosure()
     const modal = (
         <AuthFormModal 
             isOpen={isOpen} 
             onClose={onClose} 
-            isLoginForm={isLoginForm} 
-            setIsLoginForm={setIsLoginForm}
         />
     )
     return (

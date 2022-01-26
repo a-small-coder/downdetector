@@ -1,6 +1,4 @@
 // theme.js
-import bgImage from './img/MainBackground.svg'
-
 import { extendTheme } from '@chakra-ui/react'
 
 const config = {

@@ -1,7 +1,5 @@
-import { Button, HStack, Image, Text } from '@chakra-ui/react';
+import { HStack, Image, Text } from '@chakra-ui/react';
 import React from 'react';
-import singinIcon from '../img/ExitIcon.png'
-import AuthFormModal from './AuthFormModal';
 import Authorization from './Authorization';
 
 

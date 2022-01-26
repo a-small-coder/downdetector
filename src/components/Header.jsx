@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link,} from '@chakra-ui/react';
+import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link, } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
 import logo from '../img/mainLogo.png';
@@ -20,7 +20,7 @@ function Header(props) {
     }, [scrollY]);
 
     const userEmail = "someMail@.mail.ru"
-    
+
     return (
         <Box pos="relative">
             <chakra.header
@@ -34,27 +34,28 @@ function Header(props) {
                     <Flex w="full" h="full" align="center" justify="space-between">
                         <Flex align="center">
                             <Link href="/">
-                                <HStack>
-                                    <Image src={logo} alt='KitSune' w={{ base: "8", lg: "12" }} maxW='none'/>
+                                <HStack spacing={4}>
+                                    <Image src={logo} alt='KitSune' w={{ base: "8", lg: "12" }} maxW='none' />
+                                    <Heading fontSize='2xl' color='white' fontWeight='400' display={{ base: 'none', lg: 'block' }}>
+                                        KitSune
+                                    </Heading>
                                 </HStack>
                             </Link>
-                            <Heading fontSize='2xl' color='white' fontWeight='400' ml='4' display={{base: 'none', lg: 'block'}}>
-                                KitSune
-                            </Heading>
+
                         </Flex>
 
                         <Flex
                             w='full'
                             maxW='700px'
-                            px={{base: '24px', sm:'32px', md: 'calc(16px + 24 * ((100vw - 320px) / 950))'}}
+                            px={{ base: '24px', sm: '32px', md: 'calc(16px + 24 * ((100vw - 320px) / 950))' }}
                         >
                             <InputGroup color='white'>
                                 <InputLeftElement
                                     pointerEvents='none'
-                                    children={<Icon as={SearchIcon}/>}
+                                    children={<Icon as={SearchIcon} />}
                                 />
-                                <Input 
-                                    type='text' 
+                                <Input
+                                    type='text'
                                     placeholder='Поиск финансовых организаций'
                                     variant='flushed'
                                     textAlign='center'
@@ -69,9 +70,9 @@ function Header(props) {
                             justify="flex-end"
                             align="center"
                         >
-                            <HeaderUserInfo 
-                                isUserAuth={props.isAuth} 
-                                userEmail={userEmail} 
+                            <HeaderUserInfo
+                                isUserAuth={props.isAuth}
+                                userEmail={userEmail}
                                 userIcon={testAvatar}
                             />
                         </Flex>
