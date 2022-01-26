@@ -1,27 +1,16 @@
-import { HStack, Image, Text } from '@chakra-ui/react';
+import { Button, HStack, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import singinIcon from '../img/ExitIcon.png'
+import AuthFormModal from './AuthFormModal';
+import Authorization from './Authorization';
 
 
 function HeaderUserInfo(props) {
-    debugger
+
     if (!props.isUserAuth) {
+
         return (
-            <HStack spacing={{ base: '1', md: '5' }} display="flex">
-                {/* для экранов шире чем 992px */}
-                <Text fontSize='2xl' color='white' display={{ base: "none", lg: "block" }}>
-                    Войти/Регистрация
-                </Text>
-                {/* для экранов уже чем 992px */}
-                <Image
-                    src={singinIcon}
-                    display={{ base: "block", lg: "none" }}
-                    transition="color 0.2s"
-                    minW='8'
-                    minH='8'
-                    _hover={{ color: "gray.600" }}
-                />
-            </HStack>
+            <Authorization/>
         )
     }
     else {
