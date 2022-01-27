@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, HStack, Image, Text, useDisclosure } from '@chakra-ui/react';
 import AuthFormModal from './AuthFormModal';
-import singinIcon from '../img/ExitIcon.png'
+import singinIcon from '../img/Icons/ExitIcon.png'
 
 function Authorization(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -16,7 +16,11 @@ function Authorization(props) {
             <Button onClick={onOpen} variant='link'>
 
                 {/* для экранов шире чем 992px */}
-                <Text fontSize='2xl' color='white' display={{ base: "none", lg: "block" }}>
+                <Text 
+                    fontSize='2xl' 
+                    color='white' 
+                    display={{ base: "none", lg: "block" }}
+                >
                     Войти/Регистрация
                 </Text>
 

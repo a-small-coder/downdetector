@@ -1,5 +1,5 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, ModalBody, ModalFooter, VStack } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
+import React from 'react';
 import { Field, Form, Formik } from 'formik';
 
 function LoginForm(props) {
@@ -14,10 +14,6 @@ function LoginForm(props) {
         login: '',
         password: '',
     }
-    const changeForm = props.changeForm
-
-    const [showPass, setShowPass] = useState(false)
-    const ShowPassHandleClick = () => setShowPass(!showPass)
 
     return (
         <>
@@ -28,49 +24,92 @@ function LoginForm(props) {
             >
                 {(props) => (
                     <Form autoComplete="off">
-                        <ModalBody pb={6}>
+                        
                             <VStack spacing={3}>
 
 
                                 <Field name='login'>
                                     {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.login && form.touched.login} isRequired>
-                                            <FormLabel htmlFor='login'>Email</FormLabel>
-                                            <Input {...field} id='login' placeholder='Ваш логин' type='login' />
-                                            <FormErrorMessage>{form.errors.login}</FormErrorMessage>
+                                        <FormControl 
+                                            isInvalid={form.errors.login && form.touched.login} 
+                                            px={{base: '0', sm: '16'}} 
+                                            display={'flex'} 
+                                            flexDirection={'column'} 
+                                            alignItems={'center'}
+                                        >
+                                            <FormLabel 
+                                                htmlFor='login' 
+                                                color='white' 
+                                                fontWeight={'400'} 
+                                                fontSize={'14px'}
+                                            >
+                                                E-mail
+                                            </FormLabel>
+                                            <Input 
+                                                {...field}
+                                                id='login' 
+                                                placeholder='example@my.domain' 
+                                                type='email' 
+                                                ref={props.FocusRef} 
+                                                color='blackAlpha.500' 
+                                                bg='white'
+                                            />
+                                            <FormErrorMessage>
+                                                {form.errors.login}
+                                            </FormErrorMessage>
                                         </FormControl>
                                     )}
                                 </Field>
                                 <Field name='password'>
                                     {({ field, form }) => (
-                                        <FormControl isInvalid={form.errors.password && form.touched.password} isRequired>
-                                            <FormLabel htmlFor='password'>Пароль</FormLabel>
+                                        <FormControl i
+                                            sInvalid={form.errors.password && form.touched.password} 
+                                            px={{base: '0', sm: '16'}} 
+                                            display={'flex'} 
+                                            flexDirection={'column'} 
+                                            alignItems={'center'}
+                                        >
+                                            <FormLabel 
+                                                htmlFor='password' 
+                                                color='white' 
+                                                fontWeight={'400'} 
+                                                fontSize={'14px'}
+                                            >
+                                                Пароль
+                                            </FormLabel>
                                             <InputGroup size='md'>
                                                 <Input
                                                     id='password'
                                                     pr='4.5rem'
-                                                    type={showPass ? 'text' : 'password'}
-                                                    placeholder='Придумайте пароль'
+                                                    type={'password'}
+                                                    bg='white'
+                                                    color='blackAlpha.500'
                                                     {...field}
                                                 />
-                                                <InputRightElement width='4.5rem'>
-                                                    <Button h='1.75rem' size='sm' onClick={ShowPassHandleClick} variant='link'>
-                                                        {showPass ? 'Скрыть' : 'Показать'}
-                                                    </Button>
-                                                </InputRightElement>
                                             </InputGroup>
                                             <FormErrorMessage>{form.errors.password}</FormErrorMessage>
                                         </FormControl>
                                     )}
                                 </Field>
+
+                                
                             </VStack>
-                        </ModalBody>
-                        <ModalFooter>
-                            <Button type='submit' isLoading={props.isSubmitting} colorScheme='purple' mr={3}>
+                            <Button 
+                                type='submit' 
+                                isLoading={props.isSubmitting} 
+                                variant={'solid'} 
+                                h='8' 
+                                w='100%' 
+                                bg='gray.700' 
+                                color='white' 
+                                mt='6' 
+                                fontSize={'14px'} 
+                                fontWeight={'600'} 
+                                _active={{bg: 'gray.800'}} 
+                                _hover={{bg: 'gray.800'}} 
+                            >
                                 Войти
-                            </Button>
-                            <Button onClick={changeForm}>Зарегистрироваться</Button>
-                        </ModalFooter>
+                            </Button>           
                     </Form>
                 )}
             </Formik>

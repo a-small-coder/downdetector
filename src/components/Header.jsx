@@ -31,12 +31,27 @@ function Header(props) {
                 overflowY="hidden"
             >
                 <chakra.div h="4.5rem" mx="auto">
-                    <Flex w="full" h="full" align="center" justify="space-between">
+                    <Flex 
+                        w="full" 
+                        h="full" 
+                        align="center" 
+                        justify="space-between"
+                    >
                         <Flex align="center">
                             <Link href="/">
                                 <HStack spacing={4}>
-                                    <Image src={logo} alt='KitSune' w={{ base: "8", lg: "12" }} maxW='none' />
-                                    <Heading fontSize='2xl' color='white' fontWeight='400' display={{ base: 'none', lg: 'block' }}>
+                                    <Image 
+                                        src={logo} 
+                                        alt='KitSune' 
+                                        w={{ base: "8", lg: "12" }} 
+                                        maxW='none' 
+                                    />
+                                    <Heading 
+                                        fontSize='2xl' 
+                                        color='white' 
+                                        fontWeight='400' 
+                                        display={{ base: 'none', lg: 'block' }}
+                                    >
                                         KitSune
                                     </Heading>
                                 </HStack>
