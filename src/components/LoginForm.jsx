@@ -62,8 +62,8 @@ function LoginForm(props) {
                                 </Field>
                                 <Field name='password'>
                                     {({ field, form }) => (
-                                        <FormControl i
-                                            sInvalid={form.errors.password && form.touched.password} 
+                                        <FormControl 
+                                            isInvalid={form.errors.password && form.touched.password} 
                                             px={{base: '0', sm: '16'}} 
                                             display={'flex'} 
                                             flexDirection={'column'} 
