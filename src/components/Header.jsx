@@ -51,7 +51,7 @@ function Header(props) {
                                         fontSize='2xl' 
                                         color='white' 
                                         fontWeight='400' 
-                                        display={{ base: 'none', lg: 'block' }}
+                                        display={{ base: 'none', lg: 'inherit' }}
                                     >
                                         KitSune
                                     </Heading>
