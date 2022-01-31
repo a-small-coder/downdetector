@@ -20,7 +20,7 @@ function Authorization(props) {
         <>
             <Link
                 fontSize='2xl'
-                color='white's
+                color='white'
                 onClick={onOpen}
                 display={{ base: "none", lg: "inherit" }}
             >
