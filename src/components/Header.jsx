@@ -39,7 +39,7 @@ function Header(props) {
                         justify="space-between"
                     >
                         <Flex align="center">
-                            <Link href="/"> {/* Может быть очень больно если проекте не закеширован у пользователя */}
+                            <Link href="/"> {/* Может быть очень больно если проект не закеширован у пользователя */}
                                 <HStack spacing={4}>
                                     <Image 
                                         src={kitsuneLogo} 
