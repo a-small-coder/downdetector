@@ -2,11 +2,12 @@ import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, Inp
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
 import logo from '../img/mainLogo.png';
-import testAvatar from '../img/Avatar.png';
 import { SearchIcon } from '@chakra-ui/icons'
 import { setIsAutorizedAC } from '../redux/auth_reducer';
 import { connect } from 'react-redux';
 import HeaderUserInfo from './HeaderUserInfo';
+// Icons
+import testAvatar from '../assets/avatar.png';
 
 function Header(props) {
 

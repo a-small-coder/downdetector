@@ -6,7 +6,7 @@ import {
   extendTheme,
   Flex,
 } from '@chakra-ui/react';
-import bgImage from './img/MainBackground.svg'
+import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
 
 
