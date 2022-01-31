@@ -5,6 +5,8 @@ import {
     useDisclosure
 } from '@chakra-ui/react';
 import AuthFormModal from './AuthFormModal';
+// Icon from library
+import { RiUserAddFill } from 'react-icons/ri'
 
 function Authorization(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -26,6 +28,7 @@ function Authorization(props) {
             </Link>
             <IconButton
                 mx={1}
+                icon={<RiUserAddFill />}
                 bg="transparent"
                 display={{ base: "inherit", lg: "none" }}
             />
