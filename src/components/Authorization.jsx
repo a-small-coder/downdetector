@@ -30,6 +30,7 @@ function Authorization(props) {
                 mx={1}
                 icon={<RiUserAddFill />}
                 bg="transparent"
+                onClick={onOpen}
                 display={{ base: "inherit", lg: "none" }}
             />
             {modal}
