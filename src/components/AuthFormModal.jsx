@@ -1,4 +1,4 @@
-import {  chakra, HStack, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useRadioGroup } from '@chakra-ui/react';
+import { chakra, HStack, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useRadioGroup } from '@chakra-ui/react';
 import React from 'react';
 import LoginForm from './LoginForm';
 import RadioBox from './RadioBox';
@@ -57,9 +57,9 @@ function AuthFormModal(props) {
                         <HStack {...group} justifyContent={'space-between'}>
                             {options.map((value) => {
                                 const radio = getRadioProps({ value })
-                                if (value === 'border'){
+                                if (value === 'border') {
                                     return (
-                                        <chakra.div 
+                                        <chakra.div
                                             key={value}
                                             borderRight='1px solid white'
                                             w='1px'
@@ -70,7 +70,7 @@ function AuthFormModal(props) {
                                         </chakra.div>
                                     )
                                 }
-                                else{
+                                else {
                                     return (
                                         <RadioBox key={value} {...radio}>
                                             {value === 'reg' ? 'Регистрация' : 'Вход'}

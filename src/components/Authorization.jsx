@@ -11,9 +11,9 @@ import { RiUserAddFill } from 'react-icons/ri'
 function Authorization(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
     const modal = (
-        <AuthFormModal 
-            isOpen={isOpen} 
-            onClose={onClose} 
+        <AuthFormModal
+            isOpen={isOpen}
+            onClose={onClose}
         />
     )
     return (
