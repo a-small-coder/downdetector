@@ -9,8 +9,11 @@ import {
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
 
-
-const theme = extendTheme({
+const configurate = {
+  config: {
+    initialColorMode: 'dark',
+    useSystemColorMode: false,
+  },
   global: {
     body: {
       color: 'white',
@@ -22,7 +25,9 @@ const theme = extendTheme({
       200: '#6B46C1'
     },
   },
-})
+}
+
+const theme = extendTheme(configurate)
 
 function App(props) {
   return (
@@ -42,7 +47,7 @@ function App(props) {
           px='6'
         >
           <Flex direction='column'>
-            <HeaderContainer/>
+            <HeaderContainer />
 
           </Flex>
         </chakra.div>
