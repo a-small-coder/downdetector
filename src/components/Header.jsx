@@ -1,12 +1,12 @@
 import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link, } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
-import logo from '../img/mainLogo.png';
 import { SearchIcon } from '@chakra-ui/icons'
 import { setIsAutorizedAC } from '../redux/auth_reducer';
 import { connect } from 'react-redux';
 import HeaderUserInfo from './HeaderUserInfo';
 // Icons
+import kitsuneLogo from '../assets/kitsune-logo.svg'
 import testAvatar from '../assets/avatar.png';
 
 function Header(props) {
@@ -42,7 +42,7 @@ function Header(props) {
                             <Link href="/">
                                 <HStack spacing={4}>
                                     <Image 
-                                        src={logo} 
+                                        src={kitsuneLogo} 
                                         alt='KitSune' 
                                         w={{ base: "8", lg: "12" }} 
                                         maxW='none' 
