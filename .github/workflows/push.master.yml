@@ -1,0 +1,57 @@
+name: CI on pushing to the master branch
+
+on:
+  push:
+    branches: [ master, ningaro-ci ]
+
+jobs:
+  setup_env:
+    name: Setup Env 
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout repository 🛎️
+    
+    - name: Get Node & Yarn Version 🔖
+      run: echo node `node -v` yarn `yarn -v`
+      
+    - name: Install dependencies 🕸
+      run: yarn install
+
+
+  build:
+    name: Building App
+    runs-on: self-hosted
+    needs: setup_env
+
+    steps:
+    - name: Build project 🛠
+      run: yarn build
+
+    - name: Save Artifact 💿
+      uses: actions/upload-artifact@v2
+      with:
+        name: build-app
+        path: build/
+
+
+  deploy:
+    name: Deploy
+    runs-on: self-hosted
+    needs: [setup_env, build]
+
+    steps:
+    - name: Clean work path 🔥
+      run: sudo rm -r -f *
+
+    - name: Download Artifact 📀
+      uses: actions/download-artifact@v2
+      with:
+        name: build-app
+
+    - name: Clean deploy path 🔥
+      run: sudo rm -r -f /var/www/html/*
+      
+    - name: Deploy 🎉
+      run: sudo mv -f * /var/www/html
