@@ -1,0 +1,34 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master, ningaro-ci ]
+  pull_request:
+    branches: [ master, ningaro-ci ]
+
+jobs:
+  build:
+
+    runs-on: self-hosted
+
+    steps:
+    - uses: actions/checkout@v2
+      name: Checkout repository
+    
+    - name: Get Node Version
+      run: echo node `node -v`
+      
+    - name: Get Yarn Version
+      run: echo yarn `yarn -v`
+      
+    - name: Install dependencies
+      run: yarn install
+      
+    - name: Build project
+      run: yarn build
+      
+    - name: Clean deploy path
+      run: sudo rm -r -f /var/www/html/*
+      
+    - name: Deploy
+      run: sudo mv -f build/* /var/www/html
