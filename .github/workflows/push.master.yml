@@ -43,7 +43,7 @@ jobs:
 
     steps:
     - name: Clean work path 🔥
-      run: sudo rm -r -f 
+      run: sudo rm -r -f *
 
     - name: Download Artifact 📀
       uses: actions/download-artifact@v2
