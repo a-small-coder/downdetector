@@ -1,4 +1,4 @@
-# Kitsune-Frontend [![netlify-badge][netlify-badge]][netlify-url]
+# Kitsune-Frontend [![github-ci][github-ci]][vps-url]
 
 > *Downdetector inspired* 🚨
 
@@ -32,5 +32,5 @@ npm run build
 
 <!-- VARS -->
 
-[netlify-badge]:https://api.netlify.com/api/v1/badges/14a04818-48e9-400f-ad84-0e030577240a/deploy-status
-[netlify-url]:https://app.netlify.com/sites/dev-kitsune/deploys
+[github-ci]:https://github.com/kitsune-ru/frontend/actions/workflows/push.master.yml/badge.svg
+[vps-url]: http://84.201.141.26/
