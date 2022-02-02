@@ -42,13 +42,13 @@ jobs:
     needs: [setup_env, build]
 
     steps:
+    - name: Clean work path 🔥
+      run: sudo rm -r -f 
+
     - name: Download Artifact 📀
       uses: actions/download-artifact@v2
       with:
         name: build-app
-
-    - name: Logging
-      run: ls -l
 
     - name: Clean deploy path 🔥
       run: sudo rm -r -f /var/www/html/*
