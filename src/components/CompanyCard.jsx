@@ -13,14 +13,13 @@ function CompanyCard(props) {
     const data = props.data
 
     const subscribeOnCompany = () => {
-        props.changeSubscrStatus(!data.isSubscribe)
+        props.changeSubscrStatus(data.id)
     }
 
     return (
         <chakra.div
-            flex='1 1'
-            flexBasis={{ base: '100%', md: '80%', xl: '50%' }}
-            maxW={{ base: '100%', md: '80%', xl: '50%' }}
+            flex='1 1 200px'
+            maxW='800px'
             minW='200px'
             minH='200px'
             bg='#2D3748'
@@ -31,8 +30,6 @@ function CompanyCard(props) {
             py={{ base: '12px', md: '16px', lg: '24px' }}
             px={{ base: '16px', sm: '24px', md: '32px', lg: '36px' }}
             display={'flex'}
-            mx='auto'
-            my='30px'
             _hover={{
                 transform: 'scale(1.05)',
             }}
@@ -83,7 +80,7 @@ function CompanyCard(props) {
                     h='100%'
                     flexDir={{ base: 'column-reverse', xl: 'row' }}
                     alignItems='center'
-                    pb={{ base: '20px', md: '40px', xl: '0' }}
+                    pb={{ base: '20px', md: '30px', xl: '0' }}
                 >
                     <Text textAlign='justify' w={{ base: '100%', xl: '50%' }}>
                         {data.description}
@@ -94,8 +91,9 @@ function CompanyCard(props) {
                         maxW={'300px'}
                         w={{ base: 'calc(100% - 30px)', xl: 'calc(50% - 30px)' }}
                         px='15px'
+                        my='20px'
                     >
-                        <Link>
+                        <Link ml={{base: '0', xl: '15px'}} mW='150px'>
                             <Image src={data.company_logo} alt={data.company_name} />
                         </Link>
                     </Box>
