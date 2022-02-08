@@ -5,9 +5,9 @@ import RadioBox from './RadioBox';
 import RegisterForm from './RegisterForm';
 // Icons from library
 import {
-    RiUserAddFill,
-    RiUserFollowFill,
-} from 'react-icons/ri'
+    FiUserCheck,
+    FiUserPlus,
+} from 'react-icons/fi'
 
 function AuthFormModal(props) {
     const [isLoginForm, setIsLoginForm] = React.useState(true)
@@ -74,8 +74,8 @@ function AuthFormModal(props) {
                                     return (
                                         <RadioBox key={value} {...radio}>
                                             {value === 'reg' ? 'Регистрация' : 'Вход'}
-                                            <chakra.span ml={1}>
-                                                {value === 'reg' ? <RiUserAddFill /> : <RiUserFollowFill />}
+                                            <chakra.span ml={1} fontSize='20px'>
+                                                {value === 'reg' ? <FiUserPlus/> : <FiUserCheck/>}
                                             </chakra.span>
                                         </RadioBox>
                                     )

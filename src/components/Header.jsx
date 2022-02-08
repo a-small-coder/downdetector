@@ -62,7 +62,7 @@ function Header(props) {
 
                         <Flex
                             w='full'
-                            maxW='700px'
+                            maxW='500px'
                             px={{ base: '24px', sm: '32px', md: 'calc(16px + 24 * ((100vw - 320px) / 950))' }}
                         >
                             <InputGroup color='white'>
@@ -72,10 +72,11 @@ function Header(props) {
                                 />
                                 <Input
                                     type='text'
-                                    placeholder='Поиск финансовых организаций'
+                                    placeholder='Найти'
                                     variant='flushed'
                                     textAlign='center'
                                     color='white'
+                                    _placeholder={{ color: 'white' }}
                                     isTruncated
                                     pl='10'
                                 />

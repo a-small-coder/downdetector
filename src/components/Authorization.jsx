@@ -22,6 +22,7 @@ function Authorization(props) {
                 fontSize='2xl'
                 color='white'
                 onClick={onOpen}
+                minW='212px'
                 display={{ base: "none", lg: "inherit" }}
             >
                 Войти/Регистрация
@@ -30,6 +31,7 @@ function Authorization(props) {
                 mx={1}
                 icon={<RiUserAddFill />}
                 bg="transparent"
+                color='white'
                 onClick={onOpen}
                 display={{ base: "inherit", lg: "none" }}
             />

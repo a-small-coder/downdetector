@@ -1,6 +1,11 @@
 import { HStack, Image, Text } from '@chakra-ui/react';
 import React from 'react';
 import Authorization from './Authorization';
+// Icons from library
+import {
+    FiUser,
+    FiUserPlus
+} from 'react-icons/fi'
 
 
 function HeaderUserInfo(props) {
@@ -18,7 +23,7 @@ function HeaderUserInfo(props) {
                     {props.userEmail}
                 </Text>
                 <Image
-                    src={props.userIcon}
+                    src={FiUser}
                     display="block"
                     transition="color 0.2s"
                     minW={{ base: "8", lg: "12" }}
