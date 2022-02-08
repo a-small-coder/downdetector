@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Box,
   chakra,
@@ -8,9 +8,7 @@ import {
 } from '@chakra-ui/react';
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
-import CompanyCard from './components/CompanyCard';
-
-import sberLogo from './assets/noviy-logotip-sberbank.svg'
+import CompanyCardsSection from './components/CompanyCardsSection';
 
 const configurate = {
   config: {
@@ -34,25 +32,19 @@ const theme = extendTheme(configurate)
 
 function App(props) {
 
-  const [isSubscribe, subscribeHandler] = useState(false)
+  
 
-  const cardsData = {
-    company_name: 'Сбербанк России',
-    company_logo: sberLogo,
-    description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
-    status: 'online',
-    isSubscribe: isSubscribe
-}
+
 
   return (
-    
+
     <ChakraProvider theme={theme}>
-      <Box 
-        bg='#2D3748' 
-        py={{ base: '4', md: '8', lg: '12', xl: '16' }} 
-        px={{ base: '5', md: 'calc(100vw - 90%)' }} 
+      <Box
+        bg='#2D3748'
+        py={{ base: '4', md: '8', lg: '12', xl: '16' }}
+        px={{ base: '5', md: 'calc(100vw - 90%)' }}
         backgroundImage={bgImage}
-        
+
       >
         <chakra.div
           minH={{ base: 'calc(100vh - 32px)', md: 'calc(100vh - 48px)', lg: 'calc(100vh - 96px)', xl: 'calc(100vh - 128px)' }}
@@ -61,14 +53,12 @@ function App(props) {
           borderRadius='16'
           py={{ base: '0', lg: '6' }}
           px='6'
-          boxShadow ='16px 16px 14px #44337A, 32px 32px 135px -1px rgba(85, 60, 154, 0.6);'
+          boxShadow='16px 16px 14px #44337A, 32px 32px 135px -1px rgba(85, 60, 154, 0.6);'
         >
           <Flex direction='column'>
             <HeaderContainer />
 
-            <Flex justifyContent={'space-between'} flexWrap={'wrap'} mt='80px' >
-              <CompanyCard data={cardsData} changeSubscrStatus={subscribeHandler}/>
-            </Flex>
+            <CompanyCardsSection/>
 
           </Flex>
         </chakra.div>
