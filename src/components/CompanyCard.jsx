@@ -93,7 +93,7 @@ function CompanyCard(props) {
                         px='15px'
                         my='20px'
                     >
-                        <Link ml={{base: '0', xl: '15px'}} mW='150px'>
+                        <Link ml={{base: '0', xl: '15px'}} maxW='150px'>
                             <Image src={data.company_logo} alt={data.company_name} />
                         </Link>
                     </Box>

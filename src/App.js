@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
-import CompanyCardsSection from './components/CompanyCardsSection';
+import CompanyCardsSectionContainer from './components/CompanyCardsSection';
 
 const configurate = {
   config: {
@@ -31,11 +31,6 @@ const configurate = {
 const theme = extendTheme(configurate)
 
 function App(props) {
-
-  
-
-
-
   return (
 
     <ChakraProvider theme={theme}>
@@ -58,7 +53,7 @@ function App(props) {
           <Flex direction='column'>
             <HeaderContainer />
 
-            <CompanyCardsSection/>
+            <CompanyCardsSectionContainer/>
 
           </Flex>
         </chakra.div>
