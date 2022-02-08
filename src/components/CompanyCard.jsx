@@ -1,6 +1,8 @@
 import React from 'react';
-import { Box, Button, chakra, Flex, Heading, HStack, Icon, Image, Link, Text, VStack } from '@chakra-ui/react';
-
+import { Box, Button, chakra, Flex, Heading, HStack, Icon, Image, Text, VStack } from '@chakra-ui/react';
+import {
+    Link
+} from "react-router-dom";
 import {
     FiStar
 } from 'react-icons/fi'
@@ -41,7 +43,7 @@ function CompanyCard(props) {
                         w='100%'
                         fontSize={{ base: '22px', md: '28px' }}
                     >
-                        <Link>
+                        <Link to={data.link}>
                             {data.company_name}
                         </Link>
                     </Heading>
@@ -93,7 +95,7 @@ function CompanyCard(props) {
                         px='15px'
                         my='20px'
                     >
-                        <Link ml={{base: '0', xl: '15px'}} maxW='150px'>
+                        <Link to={data.link} >
                             <Image src={data.company_logo} alt={data.company_name} />
                         </Link>
                     </Box>
@@ -105,12 +107,12 @@ function CompanyCard(props) {
                     alignItems='center'
                     w='100%'
                 >
+                    <Link to={data.link} style={{width:'100%'}}>
                     <Button
-                        maxW={{ base: '100%', sm: '50%' }}
+                        maxW={{ base: '100%', sm: '60%' }}
                         w='100%'
                         px='15px'
                         bg='purple.600'
-                        mr={{ base: '0', sm: '25px' }}
                         flex={{ base: '1 1 40px', sm: '1 0 100px' }}
                         variant={'solid'}
                         h='10'
@@ -122,11 +124,13 @@ function CompanyCard(props) {
                     >
                         К организации
                     </Button>
+                    </Link>
                     <Button
                         mt={{ base: '15px', sm: '0' }}
                         w={{ base: '100%', sm: 'auto' }}
                         px='15px'
                         bg='red.600'
+                        ml={{ base: '0', sm: '25px' }}
                         variant={'solid'}
                         h='10'
                         color='white'

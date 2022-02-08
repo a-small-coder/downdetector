@@ -6,9 +6,11 @@ import {
   extendTheme,
   Flex,
 } from '@chakra-ui/react';
+import {BrowserRouter, Redirect, Route, Routes, Switch} from "react-router-dom";
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
 import CompanyCardsSectionContainer from './components/CompanyCardsSection';
+import CompanyPage from './components/CompanyPage';
 
 const configurate = {
   config: {
@@ -32,8 +34,11 @@ const theme = extendTheme(configurate)
 
 function App(props) {
   return (
-
+<BrowserRouter>
     <ChakraProvider theme={theme}>
+      
+
+      
       <Box
         bg='#2D3748'
         py={{ base: '4', md: '8', lg: '12', xl: '16' }}
@@ -52,13 +57,18 @@ function App(props) {
         >
           <Flex direction='column'>
             <HeaderContainer />
+              <Routes>
 
-            <CompanyCardsSectionContainer/>
-
+              
+                <Route path='/' element={<CompanyCardsSectionContainer/>}/>
+                <Route path='/:company' element={<CompanyPage/>}/>
+                </Routes>
           </Flex>
         </chakra.div>
       </Box>
     </ChakraProvider>
+    </BrowserRouter>
+    
   );
 }
 

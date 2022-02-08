@@ -1,4 +1,4 @@
-import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link, } from '@chakra-ui/react';
+import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
 import { setIsAutorizedAC } from '../redux/auth_reducer';
@@ -9,6 +9,7 @@ import kitsuneLogo from '../assets/kitsune-logo.svg'
 import {
     FiSearch,
 } from 'react-icons/fi'
+import { Link } from 'react-router-dom';
 
 function Header(props) {
 
@@ -40,7 +41,7 @@ function Header(props) {
                         justify="space-between"
                     >
                         <Flex align="center">
-                            <Link href="/"> {/* Может быть очень больно если проект не закеширован у пользователя */}
+                            <Link to="/"> {/* Может быть очень больно если проект не закеширован у пользователя */}
                                 <HStack spacing={4}>
                                     <Image 
                                         src={kitsuneLogo} 
