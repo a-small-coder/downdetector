@@ -13,7 +13,7 @@ function HeaderUserInfo(props) {
     if (!props.isUserAuth) {
 
         return (
-            <Authorization/>
+            <Authorization isAuth={props.isUserAuth}/>
         )
     }
     else {

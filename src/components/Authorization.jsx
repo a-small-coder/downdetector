@@ -1,12 +1,14 @@
 import React from 'react';
 import {
-    Link,
     IconButton,
     useDisclosure
 } from '@chakra-ui/react';
 import AuthFormModal from './AuthFormModal';
 // Icon from library
-import { RiUserAddFill } from 'react-icons/ri'
+import {
+    FiUserCheck,
+    FiUserPlus,
+} from 'react-icons/fi'
 
 function Authorization(props) {
     const { isOpen, onOpen, onClose } = useDisclosure()
@@ -18,24 +20,43 @@ function Authorization(props) {
     )
     return (
         <>
-            <Link
-                fontSize='2xl'
-                color='white'
-                onClick={onOpen}
-                minW='212px'
-                display={{ base: "none", lg: "inherit" }}
-            >
-                Войти/Регистрация
-            </Link>
-            <IconButton
+        {props.isAuth ? 
+            (<IconButton
                 mx={1}
-                icon={<RiUserAddFill />}
+                icon={<FiUserCheck />}
+                fontSize={{base: '24px', lg: '32px'}}
+                pr='4px'
                 bg="transparent"
                 color='white'
                 onClick={onOpen}
-                display={{ base: "inherit", lg: "none" }}
-            />
+                _active={{
+                    bg: 'inherit',
+                }}
+                _hover={{
+                    bg: 'inherit',
+                    border: '2px solid white'
+                }}
+            /> )
+            :
+            (<IconButton
+                mx={1}
+                fontSize={{base: '24px', lg: '32px'}}
+                pr='4px'
+                icon={<FiUserPlus />}
+                bg="transparent"
+                color='white'
+                onClick={onOpen}
+                _active={{
+                    bg: 'inherit',
+                }}
+                _hover={{
+                    bg: 'inherit',
+                    transform: 'scale(1.2)'
+                }}
+            />)
+        }
             {modal}
+
         </>
     );
 }
