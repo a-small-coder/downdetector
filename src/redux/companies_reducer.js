@@ -15,7 +15,8 @@ const initialState = {
             company_logo: sberLogo,
             description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'sberbank'
           },
       
           {
@@ -24,7 +25,8 @@ const initialState = {
             company_logo: tinkoffLogo,
             description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'tinkoff'
           },
           {
               id: 3,
@@ -32,7 +34,8 @@ const initialState = {
             company_logo: alfabankLogo,
             description: 'Альфа Банк - крупнейший частный банк в России, занимающий четвёртое место по размеру активов.',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'alfabank'
           },
           {
               id: 4,
@@ -40,7 +43,8 @@ const initialState = {
             company_logo: rhbLogo,
             description: 'Россельхоз Банк сегодня это универсальный коммерческий банк, предоставляющий все виды банковских услуг и занимающий лидирующие позиции в финансировании агропромышленного комплекса России.',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'rhb'
           },
       
           {
@@ -49,7 +53,8 @@ const initialState = {
               company_logo: sberLogo,
               description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
               status: 'online',
-              isSubscribe: false
+              isSubscribe: false,
+              link: 'sberbank'
             },
       
             {
@@ -58,7 +63,8 @@ const initialState = {
             company_logo: tinkoffLogo,
             description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'tinkoff'
           },
       
           {
@@ -67,7 +73,8 @@ const initialState = {
             company_logo: alfabankLogo,
             description: 'Альфа Банк - крупнейший частный банк в России, занимающий четвёртое место по размеру активов.',
             status: 'online',
-            isSubscribe: false
+            isSubscribe: false,
+            link: 'alfabank'
           },
     ],
 
