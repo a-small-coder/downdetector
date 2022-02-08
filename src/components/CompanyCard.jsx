@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, chakra, Heading, HStack, Icon, Image, Link, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, chakra, Flex, Heading, HStack, Icon, Image, Link, Text, VStack } from '@chakra-ui/react';
 
 import {
     FiStar
@@ -18,15 +18,18 @@ function CompanyCard(props) {
 
     return (
         <chakra.div
-            flex='1 1 50%'
-            maxW='50%'
-            minH='300px'
+            flex='1 1'
+            flexBasis={{base: '100%', md: '80%', xl: '50%'}}
+            maxW={{base: '100%', md: '80%', xl: '50%'}}
+            minW='200px'
+            minH='200px'
             bg='#2D3748'
             borderRadius='24px'
             boxShadow='0px 20px 77px rgb(3 8 17 / 40%);'
             color='white'
-            py='15px'
-            px='35px'
+
+            py={{base: '12px', md: '16px', lg: '24px'}}
+            px={{base: '16px',  sm: '24px', md: '32px', lg: '36px'}}
             display={'flex'}
             mx='auto'
             my='30px'
@@ -34,11 +37,12 @@ function CompanyCard(props) {
                 transform: 'scale(1.05)',
             }}
         >
-            <VStack p='0'>
+            <VStack p='0' spacing={{base: 2, md: 4, xl: 6}}>
                 <HStack justifyContent={'space-between'} w='100%'>
                     <Heading
                         textAlign={'start'}
                         w='100%'
+                        fontSize={{base: '22px', md: '28px'}}
                     >
                         <Link>
                             {data.company_name}
@@ -75,32 +79,41 @@ function CompanyCard(props) {
 
                 </HStack>
 
-                <HStack h='100%'>
-                    <Text textAlign='justify' w='50%'>
+                <Flex 
+                    h='100%' 
+                    flexDir={{base: 'column-reverse', xl: 'row'}} 
+                    alignItems='center'
+                    pb={{base: '20px', md: '40px', xl: '0'}}
+                > 
+                    <Text textAlign='justify' w={{base: '100%', xl: '50%'}}>
                         {data.description}
                     </Text>
                     <Box
                         flex={'1 1 auto'}
                         minW='100px'
-                        w='calc(50% - 30px)'
+                        maxW={'300px'}
+                        w={{base: 'calc(100% - 30px)', xl: 'calc(50% - 30px)'}}
                         px='15px'
                     >
                         <Link>
                             <Image src={data.company_logo} alt={data.company_name} />
                         </Link>
                     </Box>
-                </HStack>
+                </Flex>
 
-                <HStack
-                    justifyContent={'space-between'}
+                <Flex
+                    flexDirection={{base: 'column', sm:'row'}}
+                    justifyContent={{base: 'flex-start', sm:'space-between'}}
+                    alignItems='center'
                     w='100%'
                 >
                     <Button
-                        maxW='50%'
+                        maxW={{base: '100%', sm: '50%'}}
+                        w='100%'
                         px='15px'
                         bg='purple.600'
-                        mr='25px'
-                        flex='1 0 100px'
+                        mr={{base: '0', sm: '25px'}}
+                        flex={{base: '1 1 40px', sm: '1 0 100px'}}
                         variant={'solid'}
                         h='10'
                         color='white'
@@ -112,6 +125,8 @@ function CompanyCard(props) {
                         К организации
                     </Button>
                     <Button
+                        mt={{base: '15px', sm: '0'}}
+                        w={{base: '100%', sm: 'auto'}}
                         px='15px'
                         bg='red.600'
                         variant={'solid'}
@@ -124,7 +139,7 @@ function CompanyCard(props) {
                     >
                         Репорт
                     </Button>
-                </HStack>
+                </Flex>
 
             </VStack>
         </chakra.div>
