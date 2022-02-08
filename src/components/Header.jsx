@@ -1,13 +1,14 @@
 import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, Link, } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
 import React from 'react';
-import { SearchIcon } from '@chakra-ui/icons'
 import { setIsAutorizedAC } from '../redux/auth_reducer';
 import { connect } from 'react-redux';
 import HeaderUserInfo from './HeaderUserInfo';
 // Icons
 import kitsuneLogo from '../assets/kitsune-logo.svg'
-import testAvatar from '../assets/avatar.png';
+import {
+    FiSearch,
+} from 'react-icons/fi'
 
 function Header(props) {
 
@@ -67,8 +68,9 @@ function Header(props) {
                         >
                             <InputGroup color='white'>
                                 <InputLeftElement
+                                    fontSize={18}
                                     pointerEvents='none'
-                                    children={<Icon as={SearchIcon} />}
+                                    children={<Icon as={FiSearch} />}
                                 />
                                 <Input
                                     type='text'
@@ -90,7 +92,6 @@ function Header(props) {
                             <HeaderUserInfo
                                 isUserAuth={props.isAuth}
                                 userEmail={userEmail}
-                                userIcon={testAvatar}
                             />
                         </Flex>
                     </Flex>

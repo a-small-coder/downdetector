@@ -4,7 +4,6 @@ import Authorization from './Authorization';
 // Icons from library
 import {
     FiUser,
-    FiUserPlus
 } from 'react-icons/fi'
 
 
