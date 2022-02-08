@@ -25,11 +25,7 @@ function CompanyCardsSection(props) {
         </chakra.div>
       
     ))
-  }
-  else{
-      debugger
-  }
-  
+  }  
     return (
         <Flex justifyContent={'space-between'} flexWrap={'wrap'} mt='80px'>
               {companies}

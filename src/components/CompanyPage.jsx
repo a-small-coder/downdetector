@@ -1,6 +1,8 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, VStack } from '@chakra-ui/react';
+import { connect } from 'formik';
 import React from 'react';
 import tinkoffLogo from '../assets/тинькофф.svg';
+import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
 
 function CompanyPage(props) {
 
@@ -102,4 +104,19 @@ function CompanyPage(props) {
     );
 }
 
-export default CompanyPage;
+let mapStateToProps = (state) => {
+    return {
+        companies: state.companies
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        setSubscribeStatus: (companyId) => {
+            dispatch(setCompanySubscribeStatusAC(companyId));
+        },
+    }
+}
+const CompanyPageContainer = connect(mapStateToProps, mapDispatchToProps)(CompanyPage);
+
+export default CompanyPageContainer;
