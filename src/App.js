@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   chakra,
@@ -8,6 +8,9 @@ import {
 } from '@chakra-ui/react';
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
+import CompanyCard from './components/CompanyCard';
+
+import sberLogo from './assets/noviy-logotip-sberbank.svg'
 
 const configurate = {
   config: {
@@ -30,6 +33,17 @@ const configurate = {
 const theme = extendTheme(configurate)
 
 function App(props) {
+
+  const [isSubscribe, subscribeHandler] = useState(false)
+
+  const cardsData = {
+    company_name: 'Сбербанк России',
+    company_logo: sberLogo,
+    description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
+    status: 'online',
+    isSubscribe: isSubscribe
+}
+
   return (
     
     <ChakraProvider theme={theme}>
@@ -51,6 +65,10 @@ function App(props) {
         >
           <Flex direction='column'>
             <HeaderContainer />
+
+            <Flex justifyContent={'space-between'} flexWrap={'wrap'} mt='80px' >
+              <CompanyCard data={cardsData} changeSubscrStatus={subscribeHandler}/>
+            </Flex>
 
           </Flex>
         </chakra.div>
