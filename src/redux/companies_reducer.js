@@ -1,5 +1,5 @@
 import sberLogo from '../assets/noviy-logotip-sberbank.svg';
-import tinkoffLogo from '../assets/tinkoff-logo.png';
+import tinkoffLogo from '../assets/тинькофф.svg';
 import alfabankLogo from '../assets/Alfa-Bank.png';
 import rhbLogo from '../assets/rosselhos-logo.png'
 
@@ -20,7 +20,7 @@ const initialState = {
           },
       
           {
-              id: 2,
+            id: 2,
             company_name: 'Тинькофф банк',
             company_logo: tinkoffLogo,
             description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
