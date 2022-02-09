@@ -7,8 +7,10 @@ import { connect } from 'react-redux';
 import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import LineGraph from './LineGraph';
 
 function CompanyPage(props) {
+
     const [company, setCompany] = useState({})
 
     const subscribeHandler = () => {
@@ -31,7 +33,7 @@ function CompanyPage(props) {
     return (
         <VStack>
             <HStack py='58px' alignItems='center' flexWrap={{base: 'wrap', md: 'nowrap'}} justifyContent='center'>
-                <Heading color='white' fontWeight='700' fontSize='48px' textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);'>
+                <Heading color='white' fontWeight='700' fontSize={{base: '24px', md: '36px', lg: '48px'}} textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);'>
                     {company.company_name}
                 </Heading>
                 <Image
@@ -55,23 +57,21 @@ function CompanyPage(props) {
                 <Box 
                     mb='8'
                     mx={{base: 'auto', lg: '4'}}
-                    h='250px'
-                    maxW='450px'
+                    maxW='600px'
                     w='100%'
-                    bg='gray.500'
+                    bg='white'
                 >
-
+                    <LineGraph data={company.dataGraphPerDay}/>
                 </Box>
 
                 <Box 
                     mb='8'
                     mx={{base: 'auto', lg: '4'}}
-                    h='250px'
-                    maxW='450px'
+                    maxW='600px'
                     w='100%'
-                    bg='gray.500'
+                    bg='white'
                 >
-
+                    <LineGraph data={company.dataGraphPerHour}/>
                 </Box>
 
             </Flex>
