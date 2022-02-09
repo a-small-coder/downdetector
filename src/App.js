@@ -6,7 +6,7 @@ import {
   extendTheme,
   Flex,
 } from '@chakra-ui/react';
-import {BrowserRouter, Redirect, Route, Routes, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
 import CompanyCardsSectionContainer from './components/CompanyCardsSection';

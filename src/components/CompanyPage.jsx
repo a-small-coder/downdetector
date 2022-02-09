@@ -1,32 +1,46 @@
-import { Box, Button, Divider, Flex, Heading, HStack, Image, VStack } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, Divider, Flex, Heading, HStack, Image, VStack } from '@chakra-ui/react';
 import React from 'react';
+import {
+    useLocation
+} from "react-router-dom";
 import { connect } from 'react-redux';
-import tinkoffLogo from '../assets/тинькофф.svg';
 import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 function CompanyPage(props) {
+    const [company, setCompany] = useState({})
 
-    const data = {
-        id: 2,
-        company_name: 'Тинькофф',
-        company_logo: tinkoffLogo,
-        description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
-        status: 'online',
-        isSubscribe: false,
-        link: 'tinkoff'
+    const subscribeHandler = () => {
+        const companyCopy = {...company, isSubscribe: !company.isSubscribe}
+        props.setSubscribeStatus(company.id)
+        setCompany(companyCopy)
+      }
+
+    const location = useLocation();
+
+    useEffect(() => {
+        let company_link = location.pathname.slice(1)
+        setCompany(getCompanyData(company_link, props.companies.companies))
+    }, [location.pathname, props.companies])
+
+    if (company == null){
+        return <CircularProgress isIndeterminate color='green.300' mx='auto'/>
     }
 
     return (
         <VStack>
             <HStack py='58px' alignItems='center' flexWrap={{base: 'wrap', md: 'nowrap'}} justifyContent='center'>
                 <Heading color='white' fontWeight='700' fontSize='48px' textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);'>
-                    {data.company_name}
+                    {company.company_name}
                 </Heading>
                 <Image
-                    src={data.company_logo}
-                    alt={data.company_name} 
-                    w='124px'
-                    h='124px'
+                    src={company.company_logo}
+                    alt={company.company_name} 
+                    minW='124px'
+                    minH='124px'
+                    maxW='500px'
+                    maxH='250px'
                     >
 
                 </Image>
@@ -61,7 +75,9 @@ function CompanyPage(props) {
                 </Box>
 
             </Flex>
+
             <Divider/>
+
             <Flex 
                 flexDir={{base: 'column', md: 'row'}}
                 my='8' 
@@ -96,8 +112,9 @@ function CompanyPage(props) {
                     fontWeight={'600'} 
                     _active={{bg: 'gray.800'}} 
                     _hover={{bg: 'gray.800'}}
+                    onClick={subscribeHandler}
                 >
-                    Подписаться
+                    {company.isSubscribe ? 'Отписаться' : 'Подписаться'}
                 </Button>
             </Flex>
         </VStack>
@@ -106,7 +123,7 @@ function CompanyPage(props) {
 
 let mapStateToProps = (state) => {
     return {
-        companies: state.companies
+        companies: state.companies,
     }
 }
 
@@ -114,9 +131,22 @@ let mapDispatchToProps = (dispatch) => {
     return {
         setSubscribeStatus: (companyId) => {
             dispatch(setCompanySubscribeStatusAC(companyId));
-        },
+        }
     }
 }
 const CompanyPageContainer = connect(mapStateToProps, mapDispatchToProps)(CompanyPage);
 
 export default CompanyPageContainer;
+
+const getCompanyData = (company_name, companies) => {
+    let right_company = {}
+    if (companies == null || companies.length < 1){
+        return right_company
+    }
+    companies.forEach(company => {
+        if (company.link === company_name){
+            right_company = company
+        }
+    });
+    return right_company
+}

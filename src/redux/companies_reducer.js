@@ -4,7 +4,8 @@ import alfabankLogo from '../assets/Alfa-Bank.png';
 import rhbLogo from '../assets/rosselhos-logo.png'
 
 const SET_COMPANIES = 'SET_COMPANIES'
-const   SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
+const SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
+const SET_CURRENT_COMPANY = 'SET_CURRENT_COMPANY'
 
 
 const initialState = {
@@ -77,6 +78,7 @@ const initialState = {
             link: 'alfabank'
           },
     ],
+    current_company: {}
 
 }
 
@@ -87,6 +89,10 @@ const companiesReducer = (state=initialState, action) => {
         case SET_COMPANIES:
             stateCopy.companies = action.companiesData
             return stateCopy;
+
+        case SET_CURRENT_COMPANY:
+          stateCopy.current_company = action.companyData
+          return stateCopy;
 
         case SET_COMPANY_SUBSCRIBE_STATUS:
             stateCopy.companies = stateCopy.companies.map( c=> {
@@ -103,5 +109,6 @@ const companiesReducer = (state=initialState, action) => {
     }
 }
 export const setCompaniesAC = (companiesData) => ({type: SET_COMPANIES, companiesData: companiesData})
+export const setCurrentCompanyAC = (companyData) => ({type: SET_CURRENT_COMPANY, companyData: companyData})
 export const setCompanySubscribeStatusAC = (companyId) => ({type: SET_COMPANY_SUBSCRIBE_STATUS, companyId: companyId})
 export default companiesReducer
