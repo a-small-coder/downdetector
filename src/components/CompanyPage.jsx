@@ -1,6 +1,6 @@
 import { Box, Button, Divider, Flex, Heading, HStack, Image, VStack } from '@chakra-ui/react';
-import { connect } from 'formik';
 import React from 'react';
+import { connect } from 'react-redux';
 import tinkoffLogo from '../assets/тинькофф.svg';
 import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
 
