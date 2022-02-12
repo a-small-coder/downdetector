@@ -11,7 +11,7 @@ function CompanyCardsSection(props) {
   const subscribeHandler = (id) => {
     props.setSubscribeStatus(id)
   }
-  let companies =[]
+  let companies = []
   if (cardsData != null && cardsData.length > 0){
     companies = cardsData.map(c => (
         <chakra.div

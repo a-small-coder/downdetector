@@ -46,11 +46,14 @@ function Header(props) {
                                     <Image 
                                         src={kitsuneLogo} 
                                         alt='KitSune' 
-                                        w={{ base: "8", lg: "12" }} 
+                                        w={{ base: "8", md: '12', lg: "16" }} 
                                         maxW='none' 
                                     />
                                     <Heading 
-                                        fontSize='2xl' 
+                                        lineHeight='31px'
+                                        fontFamily="Space Grotesk"
+                                        fontStyle='normal'
+                                        fontSize='24px' 
                                         color='white' 
                                         fontWeight='400' 
                                         display={{ base: 'none', lg: 'inherit' }}

@@ -28,6 +28,9 @@ const configurate = {
       200: '#6B46C1'
     },
   },
+  fonts: {
+    body: 'Roboto'
+  }
 }
 
 const theme = extendTheme(configurate)
