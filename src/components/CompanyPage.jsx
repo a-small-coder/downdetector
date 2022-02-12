@@ -8,6 +8,7 @@ import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import LineGraph from './LineGraph';
+import SendReportAlert from './SendReportAlert';
 
 function CompanyPage(props) {
 
@@ -93,23 +94,7 @@ function CompanyPage(props) {
                 my='8' 
                 py={{base: '4', md: '12'}}
             >
-                <Button
-                     variant={'solid'} 
-                     h='12' 
-                     maxW='264px'
-                     w='100%'
-                     px='55px'
-                     mr={{base: '0', md: '16px'}}
-                     mb={{base: '4', md: '0'}}
-                     bg='gray.700' 
-                     color='white' 
-                     fontSize={'18px'} 
-                     fontWeight={'600'} 
-                     _active={{bg: 'gray.800'}} 
-                     _hover={{bg: 'gray.800'}}
-                >
-                    Отправить отчет
-                </Button>
+                <SendReportAlert/>
                 <Button
                     variant={'solid'} 
                     h='12' 
