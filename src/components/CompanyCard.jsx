@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, chakra, Flex, Heading, HStack, Icon, Image, Text, VStack } from '@chakra-ui/react';
+import { Box, chakra, Flex, Heading, HStack, Icon, Image, } from '@chakra-ui/react';
 import {
     Link
 } from "react-router-dom";
@@ -23,127 +23,62 @@ function CompanyCard(props) {
             flex='1 1 200px'
             maxW='800px'
             minW='200px'
-            minH='200px'
+            minH='150px'
             bg='#2D3748'
             borderRadius='24px'
             boxShadow='0px 20px 77px rgb(3 8 17 / 40%);'
             color='white'
-
-            py={{ base: '12px', md: '16px', lg: '24px' }}
-            px={{ base: '16px', sm: '24px', md: '32px', lg: '36px' }}
+            p={{ base: '16px', sm: '24px', md: '32px' }}
             display={'flex'}
-            _hover={{
-                transform: 'scale(1.05)',
-            }}
         >
-            <VStack p='0' spacing={{ base: 2, md: 4, xl: 6 }}>
-                <HStack justifyContent={'space-between'} w='100%'>
-                    <Heading
-                        textAlign={'start'}
-                        w='100%'
-                        fontSize={{ base: '22px', md: '28px' }}
-                    >
-                        <Link to={data.link}>
-                            {data.company_name}
-                        </Link>
-                    </Heading>
-                    {!data.isSubscribe ? (
-                        <Icon
-                            as={FiStar}
-                            h='24px'
-                            w='24px'
-                            color='white'
-                            cursor={'pointer'}
-                            _hover={{
+            <HStack justifyContent={'space-between'} alignItems='flex-start' w='100%'>
+                <Box>
+                    <chakra.div
+                        borderRadius='50%'
+                        w='19px'
+                        h='19px'
+                        backgroundColor={data.status === 'online' ? 'green.300' : 'red.500'}
+                        boxShadow={data.status === 'online' ? '0px 4px 16px rgba(104, 211, 145, 0.25);' : "0px 4px 16px rgba(229, 62, 62, 0.25);"}
+                    />
+                </Box>
+
+                <Box alignSelf='center'>
+                    <Link to={data.link} >
+                        <Flex flexDirection={{base: 'column-reverse', sm: 'row'}} alignItems='center' mt={{base:'8', sm:'0'}}>
+                            <Heading
+                                fontFamily="Space Grotesk"
+                                fontStyle='normal'
+                                fontWeight='bold'
+                                textAlign='center'
+                                w='100%'
+                                fontSize={{ base: '22px', sm: '28px', md: '32px', lg: '36px' }}
+                                mr={{base:'0', sm:'8px', md:'16px'}}
+                                mt={{base:'16px', sm:'0'}}
+                            >
+                                {data.company_name}
+                            </Heading>
+                            <Image src={data.company_logo} alt={data.company_name} maxW={{base: '48px', lg: '64px'}} />
+                        </Flex>
+                    </Link>
+                </Box>
+                    <Icon
+                        as={!data.isSubscribe ? FiStar : FaStar}
+                        h='24px'
+                        w='24px'
+                        color={!data.isSubscribe ? 'white' : 'yellow.200'}
+                        cursor={'pointer'}
+                        // boxShadow='0px 4px 16px rgba(250, 240, 137, 0.25);'
+                        _hover={!data.isSubscribe ?
+                            {
                                 color: 'yellow',
                                 transform: 'scale(1.2)'
+                            }
+                            :
+                            {
+                                transform: 'scale(1.2)'
                             }}
-                            onClick={subscribeOnCompany} />
-                    )
-                        : (
-                            <Icon
-                                as={FaStar}
-                                h='24px'
-                                w='24px'
-                                color='yellow'
-                                cursor={'pointer'}
-                                _hover={{
-                                    transform: 'scale(1.2)'
-                                }}
-                                onClick={subscribeOnCompany}
-                            />
-                        )
-
-                    }
-
-                </HStack>
-
-                <Flex
-                    h='100%'
-                    flexDir={{ base: 'column-reverse', xl: 'row' }}
-                    alignItems='center'
-                    pb={{ base: '20px', md: '30px', xl: '0' }}
-                >
-                    <Text textAlign='justify' w={{ base: '100%', xl: '50%' }}>
-                        {data.description}
-                    </Text>
-                    <Box
-                        flex={'1 1 auto'}
-                        minW='100px'
-                        maxW={'300px'}
-                        w={{ base: 'calc(100% - 30px)', xl: 'calc(50% - 30px)' }}
-                        px='15px'
-                        my='20px'
-                    >
-                        <Link to={data.link} >
-                            <Image src={data.company_logo} alt={data.company_name} />
-                        </Link>
-                    </Box>
-                </Flex>
-
-                <Flex
-                    flexDirection={{ base: 'column', sm: 'row' }}
-                    justifyContent={{ base: 'flex-start', sm: 'space-between' }}
-                    alignItems='center'
-                    w='100%'
-                >
-                    <Link to={data.link} style={{width:'100%'}}>
-                    <Button
-                        maxW={{ base: '100%', sm: '60%' }}
-                        w='100%'
-                        px='15px'
-                        bg='purple.600'
-                        flex={{ base: '1 1 40px', sm: '1 0 100px' }}
-                        variant={'solid'}
-                        h='10'
-                        color='white'
-                        fontSize={'16px'}
-                        fontWeight={'600'}
-                        _active={{ bg: 'purple.700' }}
-                        _hover={{ bg: 'purple.700' }}
-                    >
-                        К организации
-                    </Button>
-                    </Link>
-                    <Button
-                        mt={{ base: '15px', sm: '0' }}
-                        w={{ base: '100%', sm: 'auto' }}
-                        px='15px'
-                        bg='red.600'
-                        ml={{ base: '0', sm: '25px' }}
-                        variant={'solid'}
-                        h='10'
-                        color='white'
-                        fontSize={'16px'}
-                        fontWeight={'600'}
-                        _active={{ bg: 'red.700' }}
-                        _hover={{ bg: 'red.700' }}
-                    >
-                        Репорт
-                    </Button>
-                </Flex>
-
-            </VStack>
+                        onClick={subscribeOnCompany} />
+            </HStack>
         </chakra.div>
     );
 }

@@ -1,7 +1,6 @@
-import sberLogo from '../assets/noviy-logotip-sberbank.svg';
-import tinkoffLogo from '../assets/тинькофф.svg';
-import alfabankLogo from '../assets/Alfa-Bank.png';
-import rhbLogo from '../assets/rosselhos-logo.png'
+import sberLogo from '../assets/sberLogo.svg';
+import tinkoffLogo from '../assets/Tinkoff.svg';
+import alfabankLogo from '../assets/AlfaLogo.svg';
 
 const SET_COMPANIES = 'SET_COMPANIES'
 const SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
@@ -52,7 +51,7 @@ const initialState = {
           {
               id: 4,
             company_name: 'Россельхоз Банк',
-            company_logo: rhbLogo,
+            company_logo: tinkoffLogo,
             description: 'Россельхоз Банк сегодня это универсальный коммерческий банк, предоставляющий все виды банковских услуг и занимающий лидирующие позиции в финансировании агропромышленного комплекса России.',
             status: 'online',
             isSubscribe: false,
