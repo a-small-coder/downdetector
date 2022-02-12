@@ -4,7 +4,7 @@ import {
     useLocation
 } from "react-router-dom";
 import { connect } from 'react-redux';
-import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
+import { setCompanySubscribeStatusAC, setReportTimeAC } from '../redux/companies_reducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import LineGraph from './LineGraph';
@@ -94,7 +94,7 @@ function CompanyPage(props) {
                 my='8' 
                 py={{base: '4', md: '12'}}
             >
-                <SendReportAlert/>
+                <SendReportAlert id={company.id} reportTime={company.lastSendingReportTime} setReportTime={props.setReportTime}/>
                 <Button
                     variant={'solid'} 
                     h='12' 
@@ -126,6 +126,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         setSubscribeStatus: (companyId) => {
             dispatch(setCompanySubscribeStatusAC(companyId));
+        },
+        setReportTime: (companyId, time) => {
+            dispatch(setReportTimeAC(companyId, time));
         }
     }
 }

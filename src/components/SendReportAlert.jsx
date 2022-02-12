@@ -11,6 +11,47 @@ function SendReportAlert(props) {
         isClosable: true,
     })
 
+    const sendReport = () => {
+        let now = new Date().getTime();
+        if (props.reportTime >= 0 && now - props.reportTime > 10000){
+           
+            props.setReportTime(props.id, now)
+            toast({
+                render: () => (
+                    <Box 
+                        w={{base: '256px', md:'356px'}}
+                        h='72px' 
+                        color='white' 
+                        p={3} 
+                        bg='gray.500'
+                        borderRadius='6px'
+                        borderTop='4px solid #6B46C1'
+                    >
+                      <HStack spacing='3'>
+                          <Icon as={CheckCircleIcon} w='16px' color='purple.600' alignSelf='flex-start'/>
+                          <VStack spacing='0' alignItems='flex-start'>
+                              <Heading fontFamily='Inter;' fontSize='16px' fontWeight='bold'>
+                                Репорт отправлен.
+                              </Heading>
+                              <Text fontSize='16px'>
+                                Спасибо большое!
+                              </Text>
+                          </VStack>
+                      </HStack>
+                    </Box>
+                  ),
+            })
+        }
+        else{
+            toast({
+                title: 'Недавно вы уже отправили репорт',
+                status: 'warning',
+            })
+        }
+        
+
+    }
+
     return (
         <Button
             variant={'solid'}
@@ -26,33 +67,7 @@ function SendReportAlert(props) {
             fontWeight={'600'}
             _active={{ bg: 'gray.800' }}
             _hover={{ bg: 'gray.800' }}
-            onClick={() =>
-                toast({
-                    render: () => (
-                        <Box 
-                            w={{base: '256px', md:'356px'}}
-                            h='72px' 
-                            color='white' 
-                            p={3} 
-                            bg='gray.500'
-                            borderRadius='6px'
-                            borderTop='4px solid #6B46C1'
-                        >
-                          <HStack spacing='3'>
-                              <Icon as={CheckCircleIcon} w='16px' color='purple.600' alignSelf='flex-start'/>
-                              <VStack spacing='0' alignItems='flex-start'>
-                                  <Heading fontFamily='Inter;' fontSize='16px' fontWeight='bold'>
-                                    Репорт отправлен.
-                                  </Heading>
-                                  <Text fontSize='16px'>
-                                    Спасибо большое!
-                                  </Text>
-                              </VStack>
-                          </HStack>
-                        </Box>
-                      ),
-                })
-            }
+            onClick={sendReport}
         >
             Отправить отчет
         </Button>

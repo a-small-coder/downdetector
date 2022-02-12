@@ -5,6 +5,7 @@ import alfabankLogo from '../assets/AlfaLogo.svg';
 const SET_COMPANIES = 'SET_COMPANIES'
 const SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
 const SET_CURRENT_COMPANY = 'SET_CURRENT_COMPANY'
+const SET_LAST_REPORT_SENDING_TIME = 'SET_LAST_REPORT_SENDING_TIME'
 
 const tinkoffGraphs = getDataForGraph()
 const sberGraphs = getDataForGraph()
@@ -24,6 +25,7 @@ const initialState = {
             link: 'sberbank',
             dataGraphPerDay: sberGraphs[0],
             dataGraphPerHour: sberGraphs[1],
+            lastSendingReportTime: 0,
           },
       
           {
@@ -36,6 +38,7 @@ const initialState = {
             link: 'tinkoff',
             dataGraphPerDay: tinkoffGraphs[0],
             dataGraphPerHour: tinkoffGraphs[1],
+            lastSendingReportTime: 0,
           },
           {
               id: 3,
@@ -47,6 +50,7 @@ const initialState = {
             link: 'alfabank',
             dataGraphPerDay: alfaGraphs[0],
             dataGraphPerHour: alfaGraphs[1],
+            lastSendingReportTime: 0,
           },
           {
               id: 4,
@@ -58,6 +62,7 @@ const initialState = {
             link: 'rhb',
             dataGraphPerDay: rhbGraphs[0],
             dataGraphPerHour: rhbGraphs[1],
+            lastSendingReportTime: 0,
           },
     ],
     current_company: {}
@@ -85,7 +90,16 @@ const companiesReducer = (state=initialState, action) => {
                 return c
             })
             return stateCopy;
-    
+
+        case SET_LAST_REPORT_SENDING_TIME:
+            stateCopy.companies = stateCopy.companies.map( c=> {
+                if (c.id === action.id){
+                    c.lastSendingReportTime = action.time
+                    return c
+                }
+                return c
+            })
+            return stateCopy;
         default:
             return state;
     }
@@ -93,6 +107,7 @@ const companiesReducer = (state=initialState, action) => {
 export const setCompaniesAC = (companiesData) => ({type: SET_COMPANIES, companiesData: companiesData})
 export const setCurrentCompanyAC = (companyData) => ({type: SET_CURRENT_COMPANY, companyData: companyData})
 export const setCompanySubscribeStatusAC = (companyId) => ({type: SET_COMPANY_SUBSCRIBE_STATUS, companyId: companyId})
+export const setReportTimeAC = (companyId, time) => ({type: SET_LAST_REPORT_SENDING_TIME, id: companyId, time: time})
 export default companiesReducer
 
 function getDataForGraph(){
