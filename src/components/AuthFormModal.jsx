@@ -8,12 +8,13 @@ import {
     FiUserCheck,
     FiUserPlus,
 } from 'react-icons/fi'
+import { connect } from 'react-redux';
+import { setIsAutorizedAC, setUserEmailAC, setUserTokenAC } from '../redux/auth_reducer';
 
 function AuthFormModal(props) {
     const [isLoginForm, setIsLoginForm] = React.useState(true)
     const radioClickHandler = () => {
         setIsLoginForm(!isLoginForm)
-        console.log('hey')
     }
 
     const options = ['reg', 'border', 'login']
@@ -33,6 +34,14 @@ function AuthFormModal(props) {
 
     const formSubmit = (formData) => {
         console.log('login form is submiting...')
+    }
+
+    const authorizeUser = (token) => {
+        props.setIsAutorized(true)
+        if(token != null){
+            props.setUserToken(token)
+        }
+        
     }
 
     return (
@@ -86,9 +95,9 @@ function AuthFormModal(props) {
                     </ModalHeader>
                     <ModalBody pt='6' pb='0' px='0'>
                         {isLoginForm ? (
-                            <LoginForm formSubbmit={formSubmit} FocusRef={FocusRef} />
+                            <LoginForm formSubbmit={formSubmit} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
                         ) : (
-                            <RegisterForm formSubbmit={formSubmit} FocusRef={FocusRef} />
+                            <RegisterForm formSubbmit={formSubmit} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
                         )}
                     </ModalBody>
                 </ModalContent>
@@ -97,5 +106,26 @@ function AuthFormModal(props) {
     )
 }
 
-export default AuthFormModal;
+let mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+let mapDispatchToProps = (dispatch) => {
+    return {
+        setUserToken: (token) => {
+            dispatch(setUserTokenAC(token));
+        },
+        setUserEmail: (email) => {
+            dispatch(setUserEmailAC(email));
+        },
+        setIsAutorized: (isAuthorized) => {
+            dispatch(setIsAutorizedAC(isAuthorized));
+        },
+    }
+}
+const AuthFormModalContainer = connect(mapStateToProps, mapDispatchToProps)(AuthFormModal);
+
+export default AuthFormModalContainer;
 

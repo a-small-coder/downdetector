@@ -74,7 +74,23 @@ const companiesReducer = (state=initialState, action) => {
     switch (action.type) {
         
         case SET_COMPANIES:
-            stateCopy.companies = action.companiesData
+            stateCopy.companies = action.companiesData.map( c => {
+                let link = c.service_name.link("efim360.ru")
+                let company = {
+                    id: c.id,
+                    company_name: c.service_name,
+                    description: c.description,
+                    status: c.status,
+                    company_logo: tinkoffLogo,
+                    isSubscribe: false,
+                    link: link,
+                    dataGraphPerDay: sberGraphs[0],
+                    dataGraphPerHour: sberGraphs[1],
+                    lastSendingReportTime: 0,
+                }
+                return company
+                
+            })
             return stateCopy;
 
         case SET_CURRENT_COMPANY:
@@ -109,6 +125,9 @@ export const setCurrentCompanyAC = (companyData) => ({type: SET_CURRENT_COMPANY,
 export const setCompanySubscribeStatusAC = (companyId) => ({type: SET_COMPANY_SUBSCRIBE_STATUS, companyId: companyId})
 export const setReportTimeAC = (companyId, time) => ({type: SET_LAST_REPORT_SENDING_TIME, id: companyId, time: time})
 export default companiesReducer
+
+
+
 
 function getDataForGraph(){
   function getRandomIntInclusive(min, max) {
@@ -155,9 +174,5 @@ function getDataForGraph(){
       data: statusPerHour,
       labels: statusPerHourLabels
   }
-
-  console.log(statusPerDay)
-  console.log(statusPerDayLabels)
-
   return [dataGraphPerDay, dataGraphPerHour]
 }

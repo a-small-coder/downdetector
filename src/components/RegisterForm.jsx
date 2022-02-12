@@ -1,14 +1,27 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
 
 function RegisterForm(props) {
 
     const onSubmit = (values, actions) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
+        const sendingData ={
+            username: values.email.slice(0, values.email.indexOf("@")),
+            email: values.email,
+            password: values.password,
+            password2: values.confirmpassword
+        }
+        console.log(sendingData)
+        const goodResponse = (responseData) => {
+            props.loginF(responseData.access_token)
+            props.setEmail(values.email)
             actions.setSubmitting(false)
-        }, 1000)
+        }
+        const badResponse = (data) => {
+            actions.setSubmitting(false)
+        }
+        postApiRequest(`${PrefixUrl}users/`, sendingData, goodResponse, badResponse)
     }
 
     const initialValues = {

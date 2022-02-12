@@ -1,17 +1,24 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
 
 function LoginForm(props) {
     const onSubmit = (values, actions) => {
-        setTimeout(() => {
-            alert(JSON.stringify(values, null, 2))
+        console.log(values)
+        const goodResponse = (responseData) => {
+            props.loginF(responseData.access_token)
+            props.setEmail(values.email)
             actions.setSubmitting(false)
-        }, 1000)
+        }
+        const badResponse = (data) => {
+            actions.setSubmitting(false)
+        }
+        postApiRequest(`${PrefixUrl}auth/`, values, goodResponse, badResponse)
     }
 
     const initialValues = {
-        login: '',
+        email: '',
         password: '',
     }
 
@@ -28,17 +35,17 @@ function LoginForm(props) {
                             <VStack spacing={3}>
 
 
-                                <Field name='login'>
+                                <Field name='email'>
                                     {({ field, form }) => (
                                         <FormControl 
-                                            isInvalid={form.errors.login && form.touched.login} 
+                                            isInvalid={form.errors.email && form.touched.email} 
                                             px={{base: '0', sm: '16'}} 
                                             display={'flex'} 
                                             flexDirection={'column'} 
                                             alignItems={'center'}
                                         >
                                             <FormLabel 
-                                                htmlFor='login' 
+                                                htmlFor='email' 
                                                 color='white' 
                                                 fontWeight={'400'} 
                                                 fontSize={'14px'}
@@ -47,7 +54,7 @@ function LoginForm(props) {
                                             </FormLabel>
                                             <Input 
                                                 {...field}
-                                                id='login' 
+                                                id='email' 
                                                 placeholder='example@my.domain' 
                                                 type='email' 
                                                 ref={props.FocusRef} 
@@ -55,7 +62,7 @@ function LoginForm(props) {
                                                 bg='white'
                                             />
                                             <FormErrorMessage>
-                                                {form.errors.login}
+                                                {form.errors.email}
                                             </FormErrorMessage>
                                         </FormControl>
                                     )}

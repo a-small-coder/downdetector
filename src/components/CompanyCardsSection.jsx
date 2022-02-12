@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import CompanyCard from './CompanyCard';
 import { chakra, Flex } from '@chakra-ui/react';
 import { connect } from 'react-redux';
-import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
+import { setCompaniesAC, setCompanySubscribeStatusAC } from '../redux/companies_reducer';
+import PrefixUrl, {getApiRequest} from '../utils/api_requests.js'
 
 
 function CompanyCardsSection(props) {
+
   const cardsData = props.companies.companies
+
+  useEffect(()=> {
+    getApiRequest(`${PrefixUrl}services/`, null, props.setCompanies)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  
 
   const subscribeHandler = (id) => {
     props.setSubscribeStatus(id)
@@ -44,6 +53,9 @@ let mapDispatchToProps = (dispatch) => {
         setSubscribeStatus: (companyId) => {
             dispatch(setCompanySubscribeStatusAC(companyId));
         },
+        setCompanies: (companies) => {
+          dispatch(setCompaniesAC(companies));
+      },
     }
 }
 const CompanyCardsSectionContainer = connect(mapStateToProps, mapDispatchToProps)(CompanyCardsSection);
