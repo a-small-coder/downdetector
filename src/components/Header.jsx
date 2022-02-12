@@ -96,6 +96,7 @@ function Header(props) {
                             align="center"
                         >
                             <HeaderUserInfo
+                                setIsAuth={props.setIsAuth}
                                 isUserAuth={props.isAuth}
                                 userEmail={userEmail}
                             />
@@ -108,7 +109,7 @@ function Header(props) {
 }
 let mapStateToProps = (state) => {
     return {
-        isAuth: state.auth.is_authorized
+        isAuth: state.auth.is_authorized,
     }
 }
 

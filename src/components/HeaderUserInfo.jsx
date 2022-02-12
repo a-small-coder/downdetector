@@ -9,6 +9,10 @@ import {
 
 function HeaderUserInfo(props) {
 
+    const exitHandler = () => {
+        props.setIsAuth(false)
+    }
+
     if (!props.isUserAuth) {
 
         return (
@@ -17,18 +21,19 @@ function HeaderUserInfo(props) {
     }
     else {
         return (
-            <HStack spacing={{ base: '1', md: '5' }} display="flex">
+            <HStack spacing='1' display="flex">
                 <Text fontSize='2xl' color='white' isTruncated maxW='130px' display={{ base: "none", lg: "block" }}>
                     {props.userEmail}
                 </Text>
                 <Image
-                    src={FiUser}
-                    display="block"
-                    transition="color 0.2s"
-                    minW={{ base: "8", lg: "12" }}
-                    minH={{ base: "8", lg: "12" }}
-                    _hover={{ color: "gray.600" }}
-                />
+                as={FiUser}
+                w={{ base: "8", md: '12', lg: "16" }}
+                fontSize={{base: '24px', md: '32px', lg: '38px'}}
+                bg="transparent"
+                color='white'
+                cursor='pointer'
+                onClick={exitHandler}
+            /> 
             </HStack>
         );
     }
