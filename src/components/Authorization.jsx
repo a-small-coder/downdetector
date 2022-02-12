@@ -21,11 +21,9 @@ function Authorization(props) {
     return (
         <>
         <IconButton
-                mx={1}
                 icon={props.isAuth ? <FiUserCheck /> : <FiUserPlus />}
                 fontSize={{base: '24px', lg: '32px'}}
-                pr='4px'
-                mr='2'
+                mr={{base: '1', md: '2'}}
                 bg="transparent"
                 color='white'
                 onClick={onOpen}

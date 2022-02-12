@@ -1,4 +1,4 @@
-import { Box, Button, CircularProgress, Divider, Flex, Heading, HStack, Image, VStack } from '@chakra-ui/react';
+import { Box, Button, CircularProgress, Divider, Flex, Heading, Image, VStack } from '@chakra-ui/react';
 import React from 'react';
 import {
     useLocation
@@ -32,26 +32,36 @@ function CompanyPage(props) {
 
     return (
         <VStack>
-            <HStack py='58px' alignItems='center' flexWrap={{base: 'wrap', md: 'nowrap'}} justifyContent='center'>
-                <Heading color='white' fontWeight='700' fontSize={{base: '24px', md: '36px', lg: '48px'}} textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);'>
+            <Flex 
+                py='58px' 
+                alignItems='center' 
+                flexDir={{base: 'column-reverse', sm: 'row'}} 
+                flexWrap={{base: 'wrap', md: 'nowrap'}} 
+                justifyContent='center'
+            >
+                <Heading 
+                    color='white' 
+                    fontWeight='700' 
+                    fontSize={{base: '24px', md: '36px', lg: '48px'}} 
+                    textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);' 
+                    m={{base: '16px 0 0 0', sm: '0 12px 0 0', md: '0 20px 0 0'}}
+                >
                     {company.company_name}
                 </Heading>
                 <Image
                     src={company.company_logo}
                     alt={company.company_name} 
-                    minW='124px'
-                    minH='124px'
-                    maxW='500px'
-                    maxH='250px'
+                    w={{base: '48px', md: '64px'}}
                     >
 
                 </Image>
-            </HStack>
+            </Flex>
 
             <Flex 
                 flexDir={{base: 'column', lg: 'row'}}
                 w='100%'
                 justifyContent='space-around'
+                flexWrap='wrap'
                 
             >
                 <Box 

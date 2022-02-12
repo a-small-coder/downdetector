@@ -16,7 +16,7 @@ function CompanyCardsSection(props) {
     companies = cardsData.map(c => (
         <chakra.div
           key={c.id} 
-          my='30px'
+          my='16px'
           mx={{base: 'auto', xl: '0'}} 
           px='10px' 
           width={{base: '100%', md: '80%', xl: '50%'}}

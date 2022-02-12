@@ -46,7 +46,7 @@ function Header(props) {
                                     <Image 
                                         src={kitsuneLogo} 
                                         alt='KitSune' 
-                                        w={{ base: "8", md: '12', lg: "16" }} 
+                                        w={{ base: "12", md: '12', lg: "16" }} 
                                         maxW='none' 
                                     />
                                     <Heading 
@@ -77,6 +77,7 @@ function Header(props) {
                                     children={<Icon as={FiSearch} />}
                                 />
                                 <Input
+                                    
                                     type='text'
                                     placeholder='Найти'
                                     variant='flushed'
@@ -84,12 +85,13 @@ function Header(props) {
                                     color='white'
                                     _placeholder={{ color: 'white' }}
                                     isTruncated
-                                    pl='10'
+                                    pl='3'
                                 />
                             </InputGroup>
                         </Flex>
 
                         <Flex
+                            ml={{base: '0', lg:'120px'}}
                             justify="flex-end"
                             align="center"
                         >
