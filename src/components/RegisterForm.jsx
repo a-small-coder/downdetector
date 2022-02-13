@@ -1,6 +1,7 @@
 import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
+import * as Yup from 'yup'
 import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
 
 function RegisterForm(props) {
@@ -24,6 +25,17 @@ function RegisterForm(props) {
         postApiRequest(`${PrefixUrl}users/`, sendingData, goodResponse, badResponse)
     }
 
+    const validation = Yup.object({
+        email: Yup.string()
+            .email('Неверный формат почтового адреса')
+            .required('Поле "Email" обязательно для заполнения.'),
+        password: Yup.string()
+            .required('Поле "Пароль" обязательно для заполнения.')
+            .min(8, "Пароль должен содержать 6 или более символов")
+            .max(25, "Пароль не может содержать более 24 символов"),
+        confirm_password: Yup.string().oneOf([Yup.ref('password'), ''], 'Пароли не совпадают.').required('Подтвердите пароль.'),
+    })
+
     const initialValues = {
         email: '',
         password: '',
@@ -36,6 +48,7 @@ function RegisterForm(props) {
             <Formik
                 onSubmit={onSubmit}
                 initialValues={initialValues}
+                validationSchema={validation}
             >
                 {(props) => (
                     <Form autoComplete="off" >
