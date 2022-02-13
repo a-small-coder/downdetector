@@ -1,9 +1,8 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
 import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
-import { useState } from 'react';
 
 function LoginForm(props) {
     const onSubmit = (values, actions) => {
@@ -29,12 +28,6 @@ function LoginForm(props) {
             .min(6, "Пароль должен содержать 6 или более символов")
             .max(25, "Пароль не может содержать более 24 символов"),
     })
-
-    const [showPass, setShowPass] = useState(false)
-
-    const showPassHandleClick = () =>{
-        setShowPass(!showPass)
-    } 
 
     const initialValues = {
         email: '',
@@ -111,17 +104,12 @@ function LoginForm(props) {
                                                 <Input
                                                     id='password'
                                                     pr='4.5rem'
-                                                    type={showPass ? 'text' : 'password'}
+                                                    type='password'
                                                     bg='white'
                                                     fontFamily='Roboto'
                                                     color='black'
                                                     {...field}
                                                 />
-                                                <InputRightElement width='4.5rem'>
-                                                    <Button h='1.75rem' size='sm' onClick={showPassHandleClick} variant='link' _focus={{}}>
-                                                        {showPass ? 'Скрыть' : 'Показать'}
-                                                    </Button>
-                                                </InputRightElement>
                                             </InputGroup>
                                             <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.password}</FormErrorMessage>
                                         </FormControl>

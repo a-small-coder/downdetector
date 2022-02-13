@@ -1,9 +1,8 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
 import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
-import { useState } from 'react';
 
 function RegisterForm(props) {
 
@@ -37,16 +36,6 @@ function RegisterForm(props) {
             .max(25, "Пароль не может содержать более 24 символов"),
         confirmpassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Пароли не совпадают.').required('Подтвердите пароль.'),
     })
-
-    const [showPass, setShowPass] = useState(false)
-    const [showConfirmPass, setShowConfirmPass] = useState(false)
-
-    const showPassHandleClick = () =>{
-        setShowPass(!showPass)
-    } 
-    const showConfirmPassHandleClick = () =>{
-        setShowConfirmPass(!showConfirmPass)
-    } 
 
     const initialValues = {
         email: '',
@@ -118,17 +107,12 @@ function RegisterForm(props) {
                                             <Input
                                                 id='password'
                                                 pr='4.5rem'
-                                                type={showPass ? 'text' : 'password'}
+                                                type='password'
                                                 color='black'
                                                 fontFamily='Roboto'
                                                 bg='white'
                                                 {...field}
                                             />
-                                            <InputRightElement width='4.5rem'>
-                                                    <Button h='1.75rem' size='sm' onClick={showPassHandleClick} variant='link' _focus={{}}>
-                                                        {showPass ? 'Скрыть' : 'Показать'}
-                                                    </Button>
-                                                </InputRightElement>
                                         </InputGroup>
                                         <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.password}</FormErrorMessage>
                                     </FormControl>
@@ -155,17 +139,12 @@ function RegisterForm(props) {
                                             <Input
                                                 id='confirmpassword'
                                                 pr='4.5rem'
-                                                type={showConfirmPass ? 'text' : 'password'}
+                                                type='password'
                                                 fontFamily='Roboto'
                                                 color='black'
                                                 bg='white'
                                                 {...field}
                                             />
-                                            <InputRightElement width='4.5rem'>
-                                                    <Button h='1.75rem' size='sm' onClick={showConfirmPassHandleClick} variant='link' _focus={{}} >
-                                                        {showConfirmPass ? 'Скрыть' : 'Показать'}
-                                                    </Button>
-                                                </InputRightElement>
                                         </InputGroup>
                                         <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.confirmpassword}</FormErrorMessage>
 
