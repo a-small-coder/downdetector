@@ -63,7 +63,8 @@ function CompanyPage(props) {
                 <Image
                     src={company.company_logo}
                     alt={company.company_name} 
-                    w={{base: '48px', md: '64px'}}
+                    h={{base: '48px', md: '64px'}}
+                    maxW={{base: '96px', md: '128px'}}
                     >
 
                 </Image>

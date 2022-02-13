@@ -57,7 +57,7 @@ function CompanyCard(props) {
                             >
                                 {data.company_name}
                             </Heading>
-                            <Image src={data.company_logo} alt={data.company_name} maxW={{base: '48px', lg: '64px'}} />
+                            <Image src={data.company_logo} alt={data.company_name} maxH={{base: '48px', lg: '64px'}} minW={{base: '64px', lg: '96px'}}/>
                         </Flex>
                     </Link>
                 </Box>
@@ -67,7 +67,6 @@ function CompanyCard(props) {
                         w='24px'
                         color={!data.isSubscribe ? 'white' : 'yellow.200'}
                         cursor={'pointer'}
-                        // boxShadow='0px 4px 16px rgba(250, 240, 137, 0.25);'
                         _hover={!data.isSubscribe ?
                             {
                                 color: 'yellow',
