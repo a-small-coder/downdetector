@@ -84,6 +84,7 @@ function Header(props) {
                                     textAlign='center'
                                     fontFamily='Roboto'
                                     color='white'
+                                    borderBottom="1px solid white;"
                                     _placeholder={{ color: 'white' }}
                                     isTruncated
                                     pl='3'
@@ -92,7 +93,7 @@ function Header(props) {
                         </Flex>
 
                         <Flex
-                            ml={{base: '0', lg:'120px'}}
+                            ml={props.isAuth ? {base: '0', lg:'120px'} : {base: '0', lg:'0'}}
                             justify="flex-end"
                             align="center"
                         >

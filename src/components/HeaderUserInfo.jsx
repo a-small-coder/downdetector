@@ -20,10 +20,11 @@ function HeaderUserInfo(props) {
         )
     }
     else {
+        const username = props.userEmail.length > 0 ? props.userEmail.slice(0, props.userEmail.indexOf('@')) : ''
         return (
             <HStack spacing='1' display="flex">
                 <Text fontSize='24px' fontWeight='500' color='white' isTruncated maxW='130px' display={{ base: "none", lg: "block" }} fontFamily="Space Grotesk">
-                    {props.userEmail}
+                    {username}
                 </Text>
                 <Image
                 as={FiUser}
