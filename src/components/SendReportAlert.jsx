@@ -63,8 +63,10 @@ function SendReportAlert(props) {
             mb={{ base: '4', md: '0' }}
             bg='gray.700'
             color='white'
+            fontFamily="Inter"
             fontSize={'18px'}
             fontWeight={'600'}
+            fontStyle="normal;"
             _active={{ bg: 'gray.800' }}
             _hover={{ bg: 'gray.800' }}
             onClick={sendReport}

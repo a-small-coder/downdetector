@@ -22,7 +22,7 @@ function HeaderUserInfo(props) {
     else {
         return (
             <HStack spacing='1' display="flex">
-                <Text fontSize='2xl' color='white' isTruncated maxW='130px' display={{ base: "none", lg: "block" }}>
+                <Text fontSize='24px' fontWeight='500' color='white' isTruncated maxW='130px' display={{ base: "none", lg: "block" }} fontFamily="Space Grotesk">
                     {props.userEmail}
                 </Text>
                 <Image

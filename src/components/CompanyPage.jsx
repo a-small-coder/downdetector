@@ -113,14 +113,16 @@ function CompanyPage(props) {
                     w='100%'
                     px='55px'
                     bg='gray.700' 
+                    fontFamily="Inter"
                     color='white' 
                     fontSize={'18px'} 
                     fontWeight={'600'} 
+                    fontStyle="normal;"
                     _active={{bg: 'gray.800'}} 
                     _hover={{bg: 'gray.800'}}
                     onClick={subscribeHandler}
                 >
-                    {company.isSubscribe ? 'Отписаться' : 'Подписаться'}
+                    {company.isSubscribe ? 'Отписаться' : 'В избранное'}
                 </Button>
             </Flex>
         </VStack>

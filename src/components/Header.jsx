@@ -67,7 +67,7 @@ function Header(props) {
 
                         <Flex
                             w='full'
-                            maxW='600px'
+                            maxW="375px"
                             px={{ base: '24px', sm: '32px', md: 'calc(16px + 24 * ((100vw - 320px) / 950))' }}
                         >
                             <InputGroup color='white'>
