@@ -1,4 +1,4 @@
-import { chakra, HStack, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useRadioGroup } from '@chakra-ui/react';
+import { chakra, HStack, Modal, ModalBody, ModalContent, ModalHeader, ModalOverlay, useRadioGroup, useToast } from '@chakra-ui/react';
 import React from 'react';
 import LoginForm from './LoginForm';
 import RadioBox from './RadioBox';
@@ -32,8 +32,43 @@ function AuthFormModal(props) {
 
     const FocusRef = React.useRef()
 
-    const formSubmit = (formData) => {
-        console.log('login form is submiting...')
+    const showServerFeedback = useToast({
+        variant: 'top-accent',
+        position: 'top',
+        duration: 9000,
+        isClosable: true,
+    })
+
+    const showFormError = (formData, formType) => {
+        let message = "Что-то пошло не так... Проверте правильность данных"
+        if (formType === 'register'){
+            switch(formData.response.status){
+                case 500:
+                    message = "Пользователь с таким email уже существует"
+                break
+                default:
+            }
+        }
+        if (formType === 'login'){
+            switch(formData.response.status){
+                case 401:
+                    message = "Неверный email или пароль"
+                break
+                case 422:
+                    message = "Что-то пошло не так. Попробуйте ещё раз"
+                break
+                case 500:
+                    message = "Что-то пошло не так. Попробуйте ещё раз"
+                break
+                default:
+
+            }
+        }
+        showServerFeedback({
+            title: message,
+            status: 'warning',
+        })
+        console.log(formData)
     }
 
     const authorizeUser = (token) => {
@@ -95,9 +130,9 @@ function AuthFormModal(props) {
                     </ModalHeader>
                     <ModalBody pt='6' pb='0' px='0'>
                         {isLoginForm ? (
-                            <LoginForm formSubbmit={formSubmit} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
+                            <LoginForm showFeedback={showFormError} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
                         ) : (
-                            <RegisterForm formSubbmit={formSubmit} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
+                            <RegisterForm showFeedback={showFormError} FocusRef={FocusRef} loginF={authorizeUser} setEmail={props.setUserEmail}/>
                         )}
                     </ModalBody>
                 </ModalContent>

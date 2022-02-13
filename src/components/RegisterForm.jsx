@@ -21,6 +21,7 @@ function RegisterForm(props) {
             actions.setSubmitting(false)
         }
         const badResponse = (data) => {
+            props.showFeedback(data)
             actions.setSubmitting(false)
         }
         postApiRequest(`${PrefixUrl}users/`, sendingData, goodResponse, badResponse)

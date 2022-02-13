@@ -14,6 +14,7 @@ function LoginForm(props) {
             actions.setSubmitting(false)
         }
         const badResponse = (data) => {
+            props.showFeedback(data)
             actions.setSubmitting(false)
         }
         postApiRequest(`${PrefixUrl}auth/`, values, goodResponse, badResponse)
