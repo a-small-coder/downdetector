@@ -4,11 +4,12 @@ import {
     useLocation
 } from "react-router-dom";
 import { connect } from 'react-redux';
-import { setCompanySubscribeStatusAC, setReportTimeAC } from '../redux/companies_reducer';
+import { setCompanySubscribeStatusAC, setReportTimeAC, setStatusDataAC } from '../redux/companies_reducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import LineGraph from './LineGraph';
 import SendReportAlert from './SendReportAlert';
+import PrefixUrl, {getApiRequest} from '../utils/api_requests.js'
 
 function CompanyPage(props) {
 
@@ -26,6 +27,16 @@ function CompanyPage(props) {
         let company_link = location.pathname.slice(1)
         setCompany(getCompanyData(company_link, props.companies.companies))
     }, [location.pathname, props.companies])
+
+    // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
+    useEffect(() => {
+        const goodResponse = (data) =>{
+            if (data.length > 0){
+              props.setStatusData(data)
+            }
+          }
+          getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+    }, [company.id, props])
 
     if (company == null){
         return <CircularProgress isIndeterminate color='green.300' mx='auto'/>
@@ -129,7 +140,10 @@ let mapDispatchToProps = (dispatch) => {
         },
         setReportTime: (companyId, time) => {
             dispatch(setReportTimeAC(companyId, time));
-        }
+        },
+        setStatusData: (reportsData) => {
+            dispatch(setStatusDataAC(reportsData));
+        },
     }
 }
 const CompanyPageContainer = connect(mapStateToProps, mapDispatchToProps)(CompanyPage);

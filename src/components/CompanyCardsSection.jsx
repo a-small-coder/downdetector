@@ -11,7 +11,12 @@ function CompanyCardsSection(props) {
   const cardsData = props.companies.companies
 
   useEffect(()=> {
-    getApiRequest(`${PrefixUrl}services/`, null, props.setCompanies)
+    const goodResponse = (data) =>{
+      if (data.length > 0){
+        props.setCompanies(data)
+      }
+    }
+    getApiRequest(`${PrefixUrl}services/`, null, goodResponse)
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

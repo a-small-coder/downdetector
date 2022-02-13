@@ -22,7 +22,7 @@ function Header(props) {
         return scrollY.onChange(() => setY(scrollY.get()));
     }, [scrollY]);
 
-    const userEmail = "someMail@.mail.ru"
+    const userEmail = props.authData.userEmail
 
     return (
         <Box pos="relative">
@@ -110,6 +110,7 @@ function Header(props) {
 let mapStateToProps = (state) => {
     return {
         isAuth: state.auth.is_authorized,
+        authData: state.auth
     }
 }
 

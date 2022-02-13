@@ -6,6 +6,7 @@ const SET_COMPANIES = 'SET_COMPANIES'
 const SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
 const SET_CURRENT_COMPANY = 'SET_CURRENT_COMPANY'
 const SET_LAST_REPORT_SENDING_TIME = 'SET_LAST_REPORT_SENDING_TIME'
+const SET_STATUS_DATA = 'SET_STATUS_DATA'
 
 const tinkoffGraphs = getDataForGraph()
 const sberGraphs = getDataForGraph()
@@ -116,6 +117,22 @@ const companiesReducer = (state=initialState, action) => {
                 return c
             })
             return stateCopy;
+        
+        case SET_STATUS_DATA:
+            let dataGraphPerHour = {title: 'График за последние сутки'} 
+            action.forEach(element => {
+                dataGraphPerHour.data.push(element.status)
+                dataGraphPerHour.labels.push(element.time)
+            });
+            stateCopy.companies = stateCopy.companies.map( c=> {
+                if (c.id === action[0].service_id){
+                    c.dataGraphPerHour = dataGraphPerHour
+                    return c
+                }
+                return c
+            })
+            return stateCopy
+
         default:
             return state;
     }
@@ -124,6 +141,7 @@ export const setCompaniesAC = (companiesData) => ({type: SET_COMPANIES, companie
 export const setCurrentCompanyAC = (companyData) => ({type: SET_CURRENT_COMPANY, companyData: companyData})
 export const setCompanySubscribeStatusAC = (companyId) => ({type: SET_COMPANY_SUBSCRIBE_STATUS, companyId: companyId})
 export const setReportTimeAC = (companyId, time) => ({type: SET_LAST_REPORT_SENDING_TIME, id: companyId, time: time})
+export const setStatusDataAC = (dataArray) => ({type: SET_STATUS_DATA, dataArray: dataArray})
 export default companiesReducer
 
 
