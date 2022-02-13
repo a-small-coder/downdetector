@@ -102,7 +102,7 @@ function CompanyPage(props) {
 
             </Flex>
 
-            <Divider/>
+            <Divider borderTop="1px solid white"/>
 
             <Flex 
                 flexDir={{base: 'column', md: 'row'}}
