@@ -82,6 +82,7 @@ function Header(props) {
                                     placeholder='Найти'
                                     variant='flushed'
                                     textAlign='center'
+                                    fontFamily='Roboto'
                                     color='white'
                                     _placeholder={{ color: 'white' }}
                                     isTruncated

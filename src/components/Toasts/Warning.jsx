@@ -21,7 +21,7 @@ function Warning(props) {
                     <Heading fontFamily='Inter;' fontSize='16px' fontWeight='bold'>
                         {props.title}
                     </Heading>
-                    <Text fontSize='16px'>
+                    <Text fontSize='16px' fontFamily='Inter;'>
                         {props.text}
                     </Text>
                 </VStack>

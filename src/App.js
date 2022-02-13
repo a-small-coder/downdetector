@@ -11,6 +11,9 @@ import bgImage from './assets/bg.svg'
 import HeaderContainer from './components/Header';
 import CompanyCardsSectionContainer from './components/CompanyCardsSection';
 import CompanyPage from './components/CompanyPage';
+import "@fontsource/roboto"
+import "@fontsource/space-grotesk"
+import "@fontsource/inter"
 
 const configurate = {
   config: {
@@ -28,9 +31,6 @@ const configurate = {
       200: '#6B46C1'
     },
   },
-  fonts: {
-    body: 'Roboto'
-  }
 }
 
 const theme = extendTheme(configurate)
@@ -38,16 +38,12 @@ const theme = extendTheme(configurate)
 function App(props) {
   return (
 <BrowserRouter>
-    <ChakraProvider theme={theme}>
-      
-
-      
+    <ChakraProvider theme={theme}>      
       <Box
         bg='#2D3748'
         py={{ base: '4', md: '8', lg: '12', xl: '16' }}
         px={{ base: '5', md: 'calc(100vw - 90%)' }}
         backgroundImage={bgImage}
-
       >
         <chakra.div
           minH={{ base: 'calc(100vh - 32px)', md: 'calc(100vh - 48px)', lg: 'calc(100vh - 96px)', xl: 'calc(100vh - 128px)' }}

@@ -67,6 +67,7 @@ function LoginForm(props) {
                                             <FormLabel 
                                                 htmlFor='email' 
                                                 color='white' 
+                                                fontFamily='Roboto'
                                                 fontWeight={'400'} 
                                                 fontSize={'14px'}
                                             >
@@ -77,11 +78,12 @@ function LoginForm(props) {
                                                 id='email' 
                                                 placeholder='example@my.domain' 
                                                 type='email' 
-                                                ref={props.FocusRef} 
+                                                ref={props.FocusRef}
+                                                fontFamily='Roboto' 
                                                 color='black' 
                                                 bg='white'
                                             />
-                                            <FormErrorMessage color={'white'}>
+                                            <FormErrorMessage color={'white'} fontFamily='Roboto'>
                                                 {form.errors.email}
                                             </FormErrorMessage>
                                         </FormControl>
@@ -99,6 +101,7 @@ function LoginForm(props) {
                                             <FormLabel 
                                                 htmlFor='password' 
                                                 color='white' 
+                                                fontFamily='Roboto'
                                                 fontWeight={'400'} 
                                                 fontSize={'14px'}
                                             >
@@ -110,6 +113,7 @@ function LoginForm(props) {
                                                     pr='4.5rem'
                                                     type={showPass ? 'text' : 'password'}
                                                     bg='white'
+                                                    fontFamily='Roboto'
                                                     color='black'
                                                     {...field}
                                                 />
@@ -119,7 +123,7 @@ function LoginForm(props) {
                                                     </Button>
                                                 </InputRightElement>
                                             </InputGroup>
-                                            <FormErrorMessage color={'white'}>{form.errors.password}</FormErrorMessage>
+                                            <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.password}</FormErrorMessage>
                                         </FormControl>
                                     )}
                                 </Field>
@@ -135,6 +139,7 @@ function LoginForm(props) {
                                 bg='gray.700' 
                                 color='white' 
                                 mt='6' 
+                                fontFamily='Roboto'
                                 fontSize={'14px'} 
                                 fontWeight={'600'} 
                                 _active={{bg: 'gray.800'}} 

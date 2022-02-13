@@ -46,8 +46,7 @@ function CompanyCard(props) {
                     <Link to={data.link} >
                         <Flex flexDirection={{base: 'column-reverse', sm: 'row'}} alignItems='center' mt={{base:'8', sm:'0'}}>
                             <Heading
-                                fontFamily="Space Grotesk"
-                                fontStyle='normal'
+                                // fontFamily="Space Grotesk"
                                 fontWeight='bold'
                                 textAlign='center'
                                 w='100%'

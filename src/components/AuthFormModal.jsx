@@ -121,7 +121,7 @@ function AuthFormModal(props) {
                                 }
                                 else {
                                     return (
-                                        <RadioBox key={value} {...radio}>
+                                        <RadioBox key={value} {...radio} fontFamily='Roboto'> 
                                             {value === 'reg' ? 'Регистрация' : 'Вход'}
                                             <chakra.span ml={1} fontSize='20px'>
                                                 {value === 'reg' ? <FiUserPlus/> : <FiUserCheck/>}

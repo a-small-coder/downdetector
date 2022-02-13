@@ -64,7 +64,7 @@ function RegisterForm(props) {
             >
                 {(props) => (
                     <Form autoComplete="off" >
-                        <VStack spacing={3}>
+                        <VStack spacing={3} fontFamily='Roboto'>
 
 
                             <Field name='email'>
@@ -78,6 +78,7 @@ function RegisterForm(props) {
                                     >
                                         <FormLabel 
                                             htmlFor='email' 
+                                            fontFamily='Roboto'
                                             color='white' 
                                             fontSize={'14px'}
                                         >
@@ -89,10 +90,11 @@ function RegisterForm(props) {
                                             placeholder='example@my.domain' 
                                             type='email' 
                                             ref={props.FocusRef} 
+                                            fontFamily='Roboto'
                                             color='black' 
                                             bg='white'
                                         />
-                                        <FormErrorMessage color={'white'}>{form.errors.email}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.email}</FormErrorMessage>
                                     </FormControl>
                                 )}
                             </Field>
@@ -106,6 +108,7 @@ function RegisterForm(props) {
                                     >
                                         <FormLabel 
                                             htmlFor='password' 
+                                            fontFamily='Roboto'
                                             color='white' 
                                             fontSize={'14px'}
                                         >
@@ -117,6 +120,7 @@ function RegisterForm(props) {
                                                 pr='4.5rem'
                                                 type={showPass ? 'text' : 'password'}
                                                 color='black'
+                                                fontFamily='Roboto'
                                                 bg='white'
                                                 {...field}
                                             />
@@ -126,7 +130,7 @@ function RegisterForm(props) {
                                                     </Button>
                                                 </InputRightElement>
                                         </InputGroup>
-                                        <FormErrorMessage color={'white'}>{form.errors.password}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.password}</FormErrorMessage>
                                     </FormControl>
                                 )}
                             </Field>
@@ -141,6 +145,7 @@ function RegisterForm(props) {
                                     >
                                         <FormLabel 
                                             htmlFor='confirmpassword' 
+                                            fontFamily='Roboto'
                                             color='white' 
                                             fontSize={'14px'}
                                         >
@@ -151,17 +156,18 @@ function RegisterForm(props) {
                                                 id='confirmpassword'
                                                 pr='4.5rem'
                                                 type={showConfirmPass ? 'text' : 'password'}
+                                                fontFamily='Roboto'
                                                 color='black'
                                                 bg='white'
                                                 {...field}
                                             />
                                             <InputRightElement width='4.5rem'>
-                                                    <Button h='1.75rem' size='sm' onClick={showConfirmPassHandleClick} variant='link' _focus={{}}>
+                                                    <Button h='1.75rem' size='sm' onClick={showConfirmPassHandleClick} variant='link' _focus={{}} >
                                                         {showConfirmPass ? 'Скрыть' : 'Показать'}
                                                     </Button>
                                                 </InputRightElement>
                                         </InputGroup>
-                                        <FormErrorMessage color={'white'}>{form.errors.confirmpassword}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'} fontFamily='Roboto'>{form.errors.confirmpassword}</FormErrorMessage>
 
 
                                     </FormControl>
@@ -178,6 +184,7 @@ function RegisterForm(props) {
                             bg='gray.700' 
                             color='white' 
                             mt='6' 
+                            fontFamily='Roboto'
                             fontSize={'14px'} 
                             fontWeight={'600'} 
                             _active={{bg: 'gray.800'}} 

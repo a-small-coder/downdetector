@@ -21,7 +21,7 @@ function Success(props) {
                     <Heading fontFamily='Inter;' fontSize='16px' fontWeight='bold'>
                         Репорт отправлен.
                     </Heading>
-                    <Text fontSize='16px'>
+                    <Text fontSize='16px' fontFamily='Inter;'>
                         Спасибо большое!
                     </Text>
                 </VStack>
