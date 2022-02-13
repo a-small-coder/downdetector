@@ -1,8 +1,9 @@
-import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, VStack } from '@chakra-ui/react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement, VStack } from '@chakra-ui/react';
 import React from 'react';
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup'
 import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
+import { useState } from 'react';
 
 function RegisterForm(props) {
 
@@ -31,10 +32,20 @@ function RegisterForm(props) {
             .required('Поле "Email" обязательно для заполнения.'),
         password: Yup.string()
             .required('Поле "Пароль" обязательно для заполнения.')
-            .min(8, "Пароль должен содержать 6 или более символов")
+            .min(8, "Пароль должен содержать 8 или более символов")
             .max(25, "Пароль не может содержать более 24 символов"),
-        confirm_password: Yup.string().oneOf([Yup.ref('password'), ''], 'Пароли не совпадают.').required('Подтвердите пароль.'),
+        confirmpassword: Yup.string().oneOf([Yup.ref('password'), ''], 'Пароли не совпадают.').required('Подтвердите пароль.'),
     })
+
+    const [showPass, setShowPass] = useState(false)
+    const [showConfirmPass, setShowConfirmPass] = useState(false)
+
+    const showPassHandleClick = () =>{
+        setShowPass(!showPass)
+    } 
+    const showConfirmPassHandleClick = () =>{
+        setShowConfirmPass(!showConfirmPass)
+    } 
 
     const initialValues = {
         email: '',
@@ -77,10 +88,10 @@ function RegisterForm(props) {
                                             placeholder='example@my.domain' 
                                             type='email' 
                                             ref={props.FocusRef} 
-                                            color='blackAlpha.500' 
+                                            color='black' 
                                             bg='white'
                                         />
-                                        <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'}>{form.errors.email}</FormErrorMessage>
                                     </FormControl>
                                 )}
                             </Field>
@@ -103,13 +114,18 @@ function RegisterForm(props) {
                                             <Input
                                                 id='password'
                                                 pr='4.5rem'
-                                                type={'password'}
-                                                color='blackAlpha.500'
+                                                type={showPass ? 'text' : 'password'}
+                                                color='black'
                                                 bg='white'
                                                 {...field}
                                             />
+                                            <InputRightElement width='4.5rem'>
+                                                    <Button h='1.75rem' size='sm' onClick={showPassHandleClick} variant='link' _focus={{}}>
+                                                        {showPass ? 'Скрыть' : 'Показать'}
+                                                    </Button>
+                                                </InputRightElement>
                                         </InputGroup>
-                                        <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'}>{form.errors.password}</FormErrorMessage>
                                     </FormControl>
                                 )}
                             </Field>
@@ -133,13 +149,18 @@ function RegisterForm(props) {
                                             <Input
                                                 id='confirmpassword'
                                                 pr='4.5rem'
-                                                type={'password'}
-                                                color='blackAlpha.500'
+                                                type={showConfirmPass ? 'text' : 'password'}
+                                                color='black'
                                                 bg='white'
                                                 {...field}
                                             />
+                                            <InputRightElement width='4.5rem'>
+                                                    <Button h='1.75rem' size='sm' onClick={showConfirmPassHandleClick} variant='link' _focus={{}}>
+                                                        {showConfirmPass ? 'Скрыть' : 'Показать'}
+                                                    </Button>
+                                                </InputRightElement>
                                         </InputGroup>
-                                        <FormErrorMessage>{form.errors.confirmpassword}</FormErrorMessage>
+                                        <FormErrorMessage color={'white'}>{form.errors.confirmpassword}</FormErrorMessage>
 
 
                                     </FormControl>
