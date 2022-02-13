@@ -1,6 +1,13 @@
 import sberLogo from '../assets/sberLogo.svg';
 import tinkoffLogo from '../assets/Tinkoff.svg';
 import alfabankLogo from '../assets/AlfaLogo.svg';
+import mts from '../assets/mts_logo.svg';
+import pochta from '../assets/Pochta_Bank_logo.svg';
+import raiff from '../assets/Raiff_logo.svg';
+import vtb from '../assets/vtb_logo.svg';
+import home from '../assets/houme_bank_logo.svg';
+import gasprom from '../assets/gasprom.svg';
+import otkrytie from '../assets/otkrytie_logo.svg';
 
 const SET_COMPANIES = 'SET_COMPANIES'
 const SET_COMPANY_SUBSCRIBE_STATUS = 'SET_COMPANY_SUBSCRIBE_STATUS'
@@ -18,7 +25,7 @@ const initialState = {
     companies: [
         {
             id: 1,
-            company_name: 'Сбербанк России',
+            company_name: 'Сбербанк',
             company_logo: sberLogo,
             description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
             status: 'online',
@@ -31,7 +38,7 @@ const initialState = {
       
           {
             id: 2,
-            company_name: 'Тинькофф банк',
+            company_name: 'Тинькофф',
             company_logo: tinkoffLogo,
             description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
             status: 'online',
@@ -43,28 +50,100 @@ const initialState = {
           },
           {
               id: 3,
-            company_name: 'Альфа Банк',
+            company_name: 'Альфа-банк',
             company_logo: alfabankLogo,
             description: 'Альфа Банк - крупнейший частный банк в России, занимающий четвёртое место по размеру активов.',
             status: 'online',
             isSubscribe: false,
-            link: 'alfabank',
+            link: 'alfa-bank',
             dataGraphPerDay: alfaGraphs[0],
             dataGraphPerHour: alfaGraphs[1],
             lastSendingReportTime: 0,
           },
           {
-              id: 4,
-            company_name: 'Россельхоз Банк',
-            company_logo: tinkoffLogo,
-            description: 'Россельхоз Банк сегодня это универсальный коммерческий банк, предоставляющий все виды банковских услуг и занимающий лидирующие позиции в финансировании агропромышленного комплекса России.',
+            id: 4,
+            company_name: 'Газпромбанк',
+            company_logo: gasprom,
+            description: ' ',
             status: 'online',
             isSubscribe: false,
-            link: 'rhb',
+            link: 'gasprombank',
             dataGraphPerDay: rhbGraphs[0],
             dataGraphPerHour: rhbGraphs[1],
             lastSendingReportTime: 0,
           },
+          {
+            id: 5,
+            company_name: 'Банк ВТБ',
+            company_logo: vtb,
+            description: ' ',
+            status: 'online',
+            isSubscribe: false,
+            link: 'vtb-bank',
+            dataGraphPerDay: rhbGraphs[0],
+            dataGraphPerHour: rhbGraphs[1],
+            lastSendingReportTime: 0,
+          },
+          {
+            id: 6,
+            company_name: 'Райффайзенбанк',
+            company_logo: raiff,
+            description: ' ',
+            status: 'online',
+            isSubscribe: false,
+            link: 'raiffayzenbank',
+            dataGraphPerDay: rhbGraphs[0],
+            dataGraphPerHour: rhbGraphs[1],
+            lastSendingReportTime: 0,
+          },
+          {
+            id: 7,
+          company_name: 'МТС Банк',
+          company_logo: mts,
+          description: '',
+          status: 'online',
+          isSubscribe: false,
+          link: 'mts-bank',
+          dataGraphPerDay: alfaGraphs[0],
+          dataGraphPerHour: alfaGraphs[1],
+          lastSendingReportTime: 0,
+        },
+        {
+          id: 8,
+          company_name: 'Почта Банк',
+          company_logo: pochta,
+          description: ' ',
+          status: 'online',
+          isSubscribe: false,
+          link: 'pochta-bank',
+          dataGraphPerDay: rhbGraphs[0],
+          dataGraphPerHour: rhbGraphs[1],
+          lastSendingReportTime: 0,
+        },
+        {
+          id: 9,
+          company_name: 'Открытие Банк',
+          company_logo: otkrytie,
+          description: ' ',
+          status: 'online',
+          isSubscribe: false,
+          link: 'otkrytie-bank',
+          dataGraphPerDay: rhbGraphs[0],
+          dataGraphPerHour: rhbGraphs[1],
+          lastSendingReportTime: 0,
+        },
+        {
+          id: 10,
+          company_name: 'Хоум Кредит Банк',
+          company_logo: home,
+          description: '',
+          status: 'online',
+          isSubscribe: false,
+          link: 'home-credit-bank',
+          dataGraphPerDay: rhbGraphs[0],
+          dataGraphPerHour: rhbGraphs[1],
+          lastSendingReportTime: 0,
+        },
     ],
     current_company: {}
 
