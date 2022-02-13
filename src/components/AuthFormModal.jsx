@@ -35,7 +35,7 @@ function AuthFormModal(props) {
 
     const showServerFeedback = useToast({
         variant: 'top-accent',
-        position: 'top',
+        position: 'top-left',
         duration: 9000,
         isClosable: true,
     })
