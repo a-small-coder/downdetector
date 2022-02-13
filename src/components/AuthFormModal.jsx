@@ -10,6 +10,7 @@ import {
 } from 'react-icons/fi'
 import { connect } from 'react-redux';
 import { setIsAutorizedAC, setUserEmailAC, setUserTokenAC } from '../redux/auth_reducer';
+import Warning from './Toasts/Warning';
 
 function AuthFormModal(props) {
     const [isLoginForm, setIsLoginForm] = React.useState(true)
@@ -40,11 +41,14 @@ function AuthFormModal(props) {
     })
 
     const showFormError = (formData, formType) => {
-        let message = "Что-то пошло не так... Проверте правильность данных"
+        let message =  {
+            title: "Что-то пошло не так...",
+            text: "Проверте правильность данных",
+        }
         if (formType === 'register'){
             switch(formData.response.status){
                 case 500:
-                    message = "Пользователь с таким email уже существует"
+                    message.text = "Пользователь с таким email уже существует"
                 break
                 default:
             }
@@ -52,21 +56,22 @@ function AuthFormModal(props) {
         if (formType === 'login'){
             switch(formData.response.status){
                 case 401:
-                    message = "Неверный email или пароль"
+                    message.text = "Неверный email или пароль"
                 break
                 case 422:
-                    message = "Что-то пошло не так. Попробуйте ещё раз"
+                    message.text = "Попробуйте ещё раз"
                 break
                 case 500:
-                    message = "Что-то пошло не так. Попробуйте ещё раз"
+                    message.text = "Попробуйте ещё раз"
                 break
                 default:
 
             }
         }
         showServerFeedback({
-            title: message,
-            status: 'warning',
+            render: () => (
+                <Warning title={message.title} text={message.text}/>
+              ),
         })
         console.log(formData)
     }

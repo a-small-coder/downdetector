@@ -30,12 +30,15 @@ function CompanyPage(props) {
 
     // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
     useEffect(() => {
-        const goodResponse = (data) =>{
-            if (data.length > 0){
-              props.setStatusData(data)
-            }
-          }
-          getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+        if (company.id != null){
+            const goodResponse = (data) =>{
+                if (data.length > 0){
+                  props.setStatusData(data)
+                }
+              }
+              getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+        }
+        
     }, [company.id, props])
 
     if (company == null){
@@ -106,7 +109,7 @@ function CompanyPage(props) {
                 my='8' 
                 py={{base: '4', md: '12'}}
             >
-                <SendReportAlert id={company.id} reportTime={company.lastSendingReportTime} setReportTime={props.setReportTime}/>
+                <SendReportAlert id={company.id} reportTime={company.lastSendingReportTime} setReportTime={props.setReportTime} toastType='success'/>
                 <Button
                     variant={'solid'} 
                     h='12' 
