@@ -36,6 +36,9 @@ const configurate = {
 const theme = extendTheme(configurate)
 
 function App(props) {
+
+ 
+
   return (
 <BrowserRouter>
     <ChakraProvider theme={theme}>      

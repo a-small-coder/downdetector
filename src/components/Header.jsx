@@ -1,6 +1,6 @@
 import { Box, chakra, Flex, Heading, HStack, Icon, Image, Input, InputGroup, InputLeftElement, } from '@chakra-ui/react';
 import { useViewportScroll } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { setIsAutorizedAC } from '../redux/auth_reducer';
 import { connect } from 'react-redux';
 import HeaderUserInfo from './HeaderUserInfo';
@@ -10,8 +10,22 @@ import {
     FiSearch,
 } from 'react-icons/fi'
 import { Link } from 'react-router-dom';
+import { setCompanySubscribeStatusAC } from '../redux/companies_reducer';
+import { getStorageFavorities } from '../utils/support_functions';
 
 function Header(props) {
+
+    const [favorite, setFavorite] = useState(null)
+
+    let favoriteServices = getStorageFavorities()
+    if (favoriteServices !== favorite){
+        setFavorite(favoriteServices)
+    }
+  
+    useEffect(() => {
+      
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [favorite])
 
     const ref = React.useRef();
     const [y, setY] = React.useState(0);
@@ -120,6 +134,9 @@ let mapDispatchToProps = (dispatch) => {
     return {
         setIsAuth: (isAuth) => {
             dispatch(setIsAutorizedAC(isAuth));
+        },
+        setSubscribeStatus: (companyId) => {
+            dispatch(setCompanySubscribeStatusAC(companyId));
         },
     }
 }

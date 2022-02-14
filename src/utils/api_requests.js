@@ -65,3 +65,7 @@ export function standartErrorResponseHandler(err) {
     }
 }
 
+export function getActualUser(token, setUserData, setToken){
+
+}
+
