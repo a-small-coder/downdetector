@@ -241,7 +241,7 @@ function getDataForGraph(){
   }
   
     function getLabel(i){
-        i = i % 29
+        i = i % 14
         return `${i}.02`
     }
 
@@ -253,7 +253,7 @@ function getDataForGraph(){
   }
   let statusPerDay = []
   let statusPerDayLabels = []
-  for(let i=0; i < 29; i++){
+  for(let i=1; i < 14; i++){
       statusPerDay.push(getStatus(getRandomIntInclusive(0, 20), 3) * getRandomIntInclusive(1, 2))
       statusPerDayLabels.push(getLabel(i))
   }
