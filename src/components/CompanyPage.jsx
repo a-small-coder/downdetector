@@ -61,11 +61,11 @@ function CompanyPage(props) {
                     textShadow='0px 4px 16px rgba(255, 255, 255, 0.25);' 
                     m={{base: '16px 0 0 0', sm: '0 12px 0 0', md: '0 20px 0 0'}}
                 >
-                    {company.company_name}
+                    {company.company_name_rus}
                 </Heading>
                 <Image
                     src={company.company_logo}
-                    alt={company.company_name} 
+                    alt={company.company_name_rus} 
                     h={{base: '48px', md: '64px'}}
                     maxW={{base: '96px', md: '128px'}}
                     >
@@ -156,13 +156,13 @@ const CompanyPageContainer = connect(mapStateToProps, mapDispatchToProps)(Compan
 
 export default CompanyPageContainer;
 
-const getCompanyData = (company_name, companies) => {
+const getCompanyData = (company_link, companies) => {
     let right_company = {}
     if (companies == null || companies.length < 1){
         return right_company
     }
     companies.forEach(company => {
-        if (company.link === company_name){
+        if (company.link === company_link){
             right_company = company
         }
     });

@@ -20,13 +20,56 @@ const sberGraphs = getDataForGraph()
 const alfaGraphs = getDataForGraph()
 const rhbGraphs = getDataForGraph()
 
+const bankNamesInRus = {
+  'sberbank': {
+    rus_name: 'Сбербанк',
+    logo: sberLogo,
+  },
+  'tinkoff': {
+    rus_name: 'Тинькофф',
+    logo: tinkoffLogo,
+  },
+  'Alpha Bank': {
+    rus_name: 'Альфа-банк',
+    logo: alfabankLogo,
+  },
+  'Gazprom Bank': {
+    rus_name: 'Газпромбанк',
+    logo: gasprom,
+  },
+  'VTB Bank': {
+    rus_name: 'Банк ВТБ',
+    logo: vtb,
+  },
+  'MTS Bank': {
+    rus_name: 'МТС Банк',
+    logo: mts,
+  },
+  'Raiffaisen bank': {
+    rus_name: 'Райффайзенбанк',
+    logo: raiff,
+  },
+  'Pochta Bank': {
+    rus_name: 'Почта Банк',
+    logo: pochta,
+  },
+ 'Otkritie Bank': {
+  rus_name: 'Открытие Банк',
+  logo: otkrytie,
+},
+  'Home Credit Bank': {
+    rus_name: 'Хоум Кредит Банк',
+    logo: home,
+  },
+}
 
 const initialState = {
     companies: [
         {
             id: 1,
-            company_name: 'Сбербанк',
-            company_logo: sberLogo,
+            company_name: 'sberbank',
+            company_name_rus: getRusNameForService('sberbank'),
+            company_logo: getActualServiceLogo('sberbank'),
             description: 'СберБанк — крупнейший банк в России, Центральной и Восточной Европе, один из ведущих международных финансовых институтов',
             status: 'online',
             isSubscribe: false,
@@ -38,8 +81,9 @@ const initialState = {
       
           {
             id: 2,
-            company_name: 'Тинькофф',
-            company_logo: tinkoffLogo,
+            company_name: 'tinkoff',
+            company_name_rus: getRusNameForService('tinkoff'),
+            company_logo: getActualServiceLogo('tinkof', tinkoffLogo),
             description: 'Тинькофф — онлайн-экосистема, основанная на финансовых и лайфстайл-услугах. Клиентами Тинькофф стали 19 млн человек по всей России.Тинькофф — третий крупнейший банк страны по количеству активных клиентов.',
             status: 'online',
             isSubscribe: false,
@@ -50,7 +94,8 @@ const initialState = {
           },
           {
               id: 3,
-            company_name: 'Альфа-банк',
+            company_name: 'Alpha Bank',
+            company_name_rus: getRusNameForService('Alpha Bank'),
             company_logo: alfabankLogo,
             description: 'Альфа Банк - крупнейший частный банк в России, занимающий четвёртое место по размеру активов.',
             status: 'online',
@@ -62,7 +107,8 @@ const initialState = {
           },
           {
             id: 4,
-            company_name: 'Газпромбанк',
+            company_name: 'Gazprom Bank',
+            company_name_rus: getRusNameForService('Gazprom Bank'),
             company_logo: gasprom,
             description: ' ',
             status: 'online',
@@ -74,7 +120,8 @@ const initialState = {
           },
           {
             id: 5,
-            company_name: 'Банк ВТБ',
+            company_name: 'VTB Bank',
+            company_name_rus: getRusNameForService('VTB Bank'),
             company_logo: vtb,
             description: ' ',
             status: 'online',
@@ -86,7 +133,8 @@ const initialState = {
           },
           {
             id: 6,
-            company_name: 'Райффайзенбанк',
+            company_name: 'Raiffaisen bank',
+            company_name_rus: getRusNameForService('Raiffaisen bank'),
             company_logo: raiff,
             description: ' ',
             status: 'online',
@@ -98,7 +146,8 @@ const initialState = {
           },
           {
             id: 7,
-          company_name: 'МТС Банк',
+          company_name: 'MTS Bank',
+          company_name_rus: getRusNameForService('MTS Bank'),
           company_logo: mts,
           description: '',
           status: 'online',
@@ -110,7 +159,8 @@ const initialState = {
         },
         {
           id: 8,
-          company_name: 'Почта Банк',
+          company_name: 'Pochta Bank',
+          company_name_rus: getRusNameForService('Pochta Bank'),
           company_logo: pochta,
           description: ' ',
           status: 'online',
@@ -122,7 +172,8 @@ const initialState = {
         },
         {
           id: 9,
-          company_name: 'Открытие Банк',
+          company_name: 'Otkritie Bank',
+          company_name_rus: getRusNameForService('Otkritie Bank'),
           company_logo: otkrytie,
           description: ' ',
           status: 'online',
@@ -134,12 +185,13 @@ const initialState = {
         },
         {
           id: 10,
-          company_name: 'Хоум Кредит Банк',
+          company_name: 'Home Credit Bank',
+          company_name_rus: getRusNameForService('Home Credit Bank'),
           company_logo: home,
           description: '',
           status: 'online',
           isSubscribe: false,
-          link: 'home-credit-bank',
+          link: encodeURIComponent('Home Credit Bank'),
           dataGraphPerDay: rhbGraphs[0],
           dataGraphPerHour: rhbGraphs[1],
           lastSendingReportTime: 0,
@@ -155,13 +207,14 @@ const companiesReducer = (state=initialState, action) => {
         
         case SET_COMPANIES:
             stateCopy.companies = action.companiesData.map( c => {
-                let link = c.service_name.link("efim360.ru")
+                let link = encodeURIComponent(c.service_name)
                 let company = {
                     id: c.id,
                     company_name: c.service_name,
+                    company_name_rus: getRusNameForService(c.service_name),
                     description: c.description,
                     status: c.status,
-                    company_logo: tinkoffLogo,
+                    company_logo: getActualServiceLogo(c.service_name),
                     isSubscribe: false,
                     link: link,
                     dataGraphPerDay: sberGraphs[0],
@@ -272,4 +325,21 @@ function getDataForGraph(){
       labels: statusPerHourLabels
   }
   return [dataGraphPerDay, dataGraphPerHour]
+}
+
+
+function getRusNameForService(service_name){
+  let service_name_rus = bankNamesInRus[service_name]
+  if (service_name_rus === undefined) {
+    return service_name
+  }
+  return service_name_rus.rus_name
+}
+
+function getActualServiceLogo(service_name, logo){
+  let service_logo = bankNamesInRus[service_name]
+  if (service_logo === undefined) {
+    return logo
+  }
+  return service_logo.logo
 }

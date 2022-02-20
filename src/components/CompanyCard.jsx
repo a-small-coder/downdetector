@@ -37,8 +37,8 @@ function CompanyCard(props) {
                         borderRadius='50%'
                         w='19px'
                         h='19px'
-                        backgroundColor={data.status === 'online' ? 'green.300' : 'red.500'}
-                        boxShadow={data.status === 'online' ? '0px 4px 16px rgba(104, 211, 145, 0.25);' : "0px 4px 16px rgba(229, 62, 62, 0.25);"}
+                        backgroundColor={data.status ? 'green.300' : 'red.500'}
+                        boxShadow={data.status ? '0px 4px 16px rgba(104, 211, 145, 0.25);' : "0px 4px 16px rgba(229, 62, 62, 0.25);"}
                     />
                 </Box>
 
@@ -53,7 +53,7 @@ function CompanyCard(props) {
                                 mr={{base:'0', sm:'8px', md:'16px'}}
                                 mt={{base:'16px', sm:'0'}}
                             >
-                                {data.company_name}
+                                {data.company_name_rus}
                             </Heading>
                             <Image src={data.company_logo} alt={data.company_name} maxH={{base: '48px', lg: '64px'}} minW={{base: '64px', lg: '96px'}}/>
                         </Flex>
