@@ -15,10 +15,10 @@ const SET_CURRENT_COMPANY = 'SET_CURRENT_COMPANY'
 const SET_LAST_REPORT_SENDING_TIME = 'SET_LAST_REPORT_SENDING_TIME'
 const SET_STATUS_DATA = 'SET_STATUS_DATA'
 
-const tinkoffGraphs = getDataForGraph()
-const sberGraphs = getDataForGraph()
-const alfaGraphs = getDataForGraph()
-const rhbGraphs = getDataForGraph()
+const tinkoffGraphs = []
+const sberGraphs = []
+const alfaGraphs = []
+const rhbGraphs = []
 
 const bankNamesInRus = {
   'sberbank': {
@@ -66,7 +66,7 @@ const bankNamesInRus = {
 const initialState = {
     companies: [
         {
-            id: 1,
+            id: 0,
             company_name: 'sberbank',
             company_name_rus: getRusNameForService('sberbank'),
             company_logo: getActualServiceLogo('sberbank'),
@@ -251,14 +251,39 @@ const companiesReducer = (state=initialState, action) => {
             return stateCopy;
         
         case SET_STATUS_DATA:
-            let dataGraphPerHour = {title: 'График за последние сутки'} 
-            action.forEach(element => {
+            let dataGraphPerHour = {title: 'График за последние сутки', data: [], labels: []} 
+            let dataGraphPerDay = {title: 'График за последние дни', data: [], labels: []}
+            action.dataArray.forEach((element, i) => {
+              if (action.dataArray.length > 20){
+
+                if (i < 21){
+                  dataGraphPerDay.data.push(element.status)
+                  dataGraphPerDay.labels.push('')
+                }
+                if (action.dataArray.length - i < 21){
+                  dataGraphPerHour.data.push(element.status)
+                  dataGraphPerHour.labels.push('')
+                }
+                
+              }              
+              else{
+                dataGraphPerDay.data.push(element.status)
+                dataGraphPerDay.labels.push('')
                 dataGraphPerHour.data.push(element.status)
-                dataGraphPerHour.labels.push(element.time)
+                dataGraphPerHour.labels.push('')
+              }
+                
             });
+            // fix axis
+            dataGraphPerDay.data.push(2)
+            dataGraphPerHour.data.push(2)
+            dataGraphPerDay.data.push(0)
+            dataGraphPerHour.data.push(0)
+            
             stateCopy.companies = stateCopy.companies.map( c=> {
-                if (c.id === action[0].service_id){
+                if (c.id === action.companyId){
                     c.dataGraphPerHour = dataGraphPerHour
+                    c.dataGraphPerDay = dataGraphPerDay
                     return c
                 }
                 return c
@@ -273,59 +298,8 @@ export const setCompaniesAC = (companiesData) => ({type: SET_COMPANIES, companie
 export const setCurrentCompanyAC = (companyData) => ({type: SET_CURRENT_COMPANY, companyData: companyData})
 export const setCompanySubscribeStatusAC = (companyId) => ({type: SET_COMPANY_SUBSCRIBE_STATUS, companyId: companyId})
 export const setReportTimeAC = (companyId, time) => ({type: SET_LAST_REPORT_SENDING_TIME, id: companyId, time: time})
-export const setStatusDataAC = (dataArray) => ({type: SET_STATUS_DATA, dataArray: dataArray})
+export const setStatusDataAC = (dataArray, id=0) => ({type: SET_STATUS_DATA, dataArray: dataArray, companyId: id})
 export default companiesReducer
-
-
-
-
-function getDataForGraph(){
-  function getRandomIntInclusive(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
-    }
-
-  function getStatus(i, val){
-      if (i < val){
-          return 0
-      }
-      return 1
-  }
-  
-    function getLabel(i){
-        i = i % 14
-        return `${i}.02`
-    }
-
-  let statusPerHour = []
-  let statusPerHourLabels = []
-  for(let i=0; i < 24; i++){
-      statusPerHour.push(getStatus(getRandomIntInclusive(0, 40), 3))
-      statusPerHourLabels.push(`${i}:00`)
-  }
-  let statusPerDay = []
-  let statusPerDayLabels = []
-  for(let i=1; i < 14; i++){
-      statusPerDay.push(getStatus(getRandomIntInclusive(0, 20), 3) * getRandomIntInclusive(1, 2))
-      statusPerDayLabels.push(getLabel(i))
-  }
-  statusPerDay.push('5', '0')
-  statusPerHour.push('2', '0')
-
-  const  dataGraphPerDay = {
-      title: 'График за последний месяц',
-      data: statusPerDay,
-      labels: statusPerDayLabels
-  }
-
-  const dataGraphPerHour = {
-      title: 'График за последние сутки',
-      data: statusPerHour,
-      labels: statusPerHourLabels
-  }
-  return [dataGraphPerDay, dataGraphPerHour]
-}
 
 
 function getRusNameForService(service_name){

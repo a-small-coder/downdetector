@@ -13,6 +13,202 @@ import PrefixUrl, {getApiRequest} from '../utils/api_requests.js'
 
 function CompanyPage(props) {
 
+
+    const graphData = [
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: false,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: false,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: false,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: false,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:53:49"
+        },
+        {
+            id: "0",
+            service_id: 0,
+            status: true,
+            time: "21.02.2022 13:59:49"
+        },
+    ]
+
     const [company, setCompany] = useState({})
 
     const subscribeHandler = () => {
@@ -31,14 +227,21 @@ function CompanyPage(props) {
     // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
     useEffect(() => {
         if (company.id != null){
-            const goodResponse = (data) =>{
-                if (data.length > 0){
-                  props.setStatusData(data)
-                }
-              }
-              getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+            if (!company?.dataGraphPerHour?.data || company.dataGraphPerHour.data.length === 0){
+                props.setStatusData(graphData, company.id)
+            }
+            else{
+                const goodResponse = (data) =>{
+                    if (data.length > 0){
+                      props.setStatusData(data, company.id)
+                    }
+                  }
+                  getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+            }
+            
         }
         
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [company.id, props])
 
     if (company == null){
@@ -147,8 +350,8 @@ let mapDispatchToProps = (dispatch) => {
         setReportTime: (companyId, time) => {
             dispatch(setReportTimeAC(companyId, time));
         },
-        setStatusData: (reportsData) => {
-            dispatch(setStatusDataAC(reportsData));
+        setStatusData: (reportsData, cId) => {
+            dispatch(setStatusDataAC(reportsData, cId));
         },
     }
 }
