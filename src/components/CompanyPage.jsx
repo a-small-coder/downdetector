@@ -239,7 +239,7 @@ function CompanyPage(props) {
     // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
     useEffect(() => {
         if (company.id != null){
-            if (!company?.dataGraphPerHour?.data || company.dataGraphPerHour.data.length === 0){
+            if (!company?.dataGraphPerHour || company.dataGraphPerHour.data.length === 0){
                 props.setStatusData(graphData, company.id)
             }
             else{
