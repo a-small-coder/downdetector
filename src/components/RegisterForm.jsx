@@ -13,7 +13,6 @@ function RegisterForm(props) {
             password: values.password,
             password2: values.confirmpassword
         }
-        console.log(sendingData)
         const goodResponse = (responseData) => {
             props.loginF(responseData.access_token)
             props.setEmail(values.email)

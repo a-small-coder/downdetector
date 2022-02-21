@@ -73,7 +73,6 @@ function AuthFormModal(props) {
                 <Warning title={message.title} text={message.text}/>
               ),
         })
-        console.log(formData)
     }
 
     const authorizeUser = (token) => {

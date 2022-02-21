@@ -10,15 +10,12 @@ export function getApiRequest(apiUrl, token=false, goodResponseHandler = standar
     }
     if (token){
         option["Authorization"] = `Token ${token}`
-        console.log(`With token: ${token}`)
     }
     
     axios.get(apiUrl, {headers: option}).then(response => {
-        console.log(response.data)
         goodResponseHandler(response.data)
         
     }).catch(err => {
-        console.log(err)
         badResponseHandler()
 
     })
@@ -31,7 +28,6 @@ export function postApiRequest(apiUrl, data, goodResponseHandler = standartGoodR
     }
     if (token){
         option["Authorization"] = `Token ${token}`
-        console.log(`With token: ${token}`)
     }
     axios({
         method: 'post',
@@ -47,7 +43,6 @@ export function postApiRequest(apiUrl, data, goodResponseHandler = standartGoodR
 }
 
 export function standartGoodResponseHandler(response) {
-    console.log(response)
 }
 
 export function standartErrorResponseHandler(err) {

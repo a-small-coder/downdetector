@@ -6,7 +6,6 @@ import PrefixUrl, {postApiRequest} from '../utils/api_requests.js'
 
 function LoginForm(props) {
     const onSubmit = (values, actions) => {
-        console.log(values)
         const goodResponse = (responseData) => {
             props.loginF(responseData.access_token)
             props.setEmail(values.email)

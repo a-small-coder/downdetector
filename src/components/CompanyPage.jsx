@@ -4,7 +4,7 @@ import {
     useLocation
 } from "react-router-dom";
 import { connect } from 'react-redux';
-import { setCompanySubscribeStatusAC, setReportTimeAC, setStatusDataAC } from '../redux/companies_reducer';
+import { setCompaniesAC, setCompanySubscribeStatusAC, setReportTimeAC, setStatusDataAC } from '../redux/companies_reducer';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import LineGraph from './LineGraph';
@@ -220,6 +220,16 @@ function CompanyPage(props) {
 
     const location = useLocation();
 
+    useEffect(()=> {
+        const goodResponse = (data) =>{
+          if (data.length > 0){
+            props.setCompanies(data)
+          }
+        }
+        getApiRequest(`${PrefixUrl}services/`, null, goodResponse)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [])
+
     useEffect(() => {
         let company_link = location.pathname.slice(1)
         setCompany(getCompanyData(company_link, props.companies.companies))
@@ -359,6 +369,9 @@ let mapDispatchToProps = (dispatch) => {
         setStatusData: (reportsData, cId) => {
             dispatch(setStatusDataAC(reportsData, cId));
         },
+        setCompanies: (companies) => {
+            dispatch(setCompaniesAC(companies));
+        },
     }
 }
 const CompanyPageContainer = connect(mapStateToProps, mapDispatchToProps)(CompanyPage);
@@ -371,8 +384,6 @@ const getCompanyData = (company_link, companies) => {
         return right_company
     }
     companies.forEach(company => {
-        console.log('current', company_link)
-        console.log('state', company.link)
         if (company.link === company_link){
             right_company = company
         }
