@@ -371,6 +371,8 @@ const getCompanyData = (company_link, companies) => {
         return right_company
     }
     companies.forEach(company => {
+        console.log('current', company_link)
+        console.log('state', company.link)
         if (company.link === company_link){
             right_company = company
         }
