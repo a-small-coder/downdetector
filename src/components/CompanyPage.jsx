@@ -210,6 +210,7 @@ function CompanyPage(props) {
     ]
 
     const [company, setCompany] = useState({})
+    const [isSendReportsRequest, setIsSendReportsRequest] = useState(false)
 
     const subscribeHandler = () => {
         const companyCopy = {...company, isSubscribe: !company.isSubscribe}
@@ -222,6 +223,7 @@ function CompanyPage(props) {
     useEffect(() => {
         let company_link = location.pathname.slice(1)
         setCompany(getCompanyData(company_link, props.companies.companies))
+        setIsSendReportsRequest(false)
     }, [location.pathname, props.companies])
 
     // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
@@ -231,12 +233,16 @@ function CompanyPage(props) {
                 props.setStatusData(graphData, company.id)
             }
             else{
-                const goodResponse = (data) =>{
-                    if (data.length > 0){
-                      props.setStatusData(data, company.id)
-                    }
-                  }
-                  getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+                if (!isSendReportsRequest){
+                    const goodResponse = (data) =>{
+                        if (data.length > 0){
+                          props.setStatusData(data, company.id)
+                        }
+                      }
+                      setIsSendReportsRequest(true)
+                      getApiRequest(`${PrefixUrl}services/${company.id}/reports/`, null, goodResponse)
+                }
+                
             }
             
         }
