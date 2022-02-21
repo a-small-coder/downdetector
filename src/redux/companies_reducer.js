@@ -208,6 +208,8 @@ const companiesReducer = (state=initialState, action) => {
         case SET_COMPANIES:
             stateCopy.companies = action.companiesData.map( c => {
                 let link = encodeURIComponent(c.service_name)
+                let dataGraphPerDay = c.dataGraphPerDay != null ? c.dataGraphPerDay : {title: 'График за последние сутки', data: [], labels: []} 
+                let dataGraphPerHour = c.dataGraphPerHour != null ? c.dataGraphPerHour : {title: 'График за последние сутки', data: [], labels: []} 
                 let company = {
                     id: c.id,
                     company_name: c.service_name,
@@ -217,8 +219,8 @@ const companiesReducer = (state=initialState, action) => {
                     company_logo: getActualServiceLogo(c.service_name),
                     isSubscribe: false,
                     link: link,
-                    dataGraphPerDay: sberGraphs[0],
-                    dataGraphPerHour: sberGraphs[1],
+                    dataGraphPerDay: dataGraphPerDay,
+                    dataGraphPerHour: dataGraphPerHour,
                     lastSendingReportTime: 0,
                 }
                 return company
