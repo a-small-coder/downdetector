@@ -1,27 +1,30 @@
+import { useEffect, useState, useRef } from 'react'
 import {
   Box,
   Button,
+  Center,
   CircularProgress,
   Divider,
   Flex,
   Heading,
   Image,
   VStack,
-} from '@chakra-ui/react';
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { connect } from 'react-redux';
+} from '@chakra-ui/react'
+import { useLocation } from 'react-router-dom'
+import { connect } from 'react-redux'
 import {
   setCompaniesAC,
   setCompanySubscribeStatusAC,
   setReportTimeAC,
   setStatusDataAC,
-} from '../redux/companies_reducer';
-import { useEffect } from 'react';
-import { useState } from 'react';
-import LineGraph from './charts/Line';
-import SendReportAlert from './SendReportAlert';
-import PrefixUrl, { getApiRequest } from '../utils/api_requests.js';
+} from '../redux/companies_reducer'
+
+// Charts
+import LineGraph from './charts/Line'
+import ScatterGraph from './charts/Scatter'
+
+import SendReportAlert from './SendReportAlert'
+import PrefixUrl, { getApiRequest } from '../utils/api_requests.js'
 
 function CompanyPage(props) {
   const graphData = [
@@ -217,34 +220,36 @@ function CompanyPage(props) {
       status: true,
       time: '21.02.2022 13:59:49',
     },
-  ];
+  ]
 
-  const [company, setCompany] = useState({});
-  const [isSendReportsRequest, setIsSendReportsRequest] = useState(false);
+  const [company, setCompany] = useState({})
+  const [isSendReportsRequest, setIsSendReportsRequest] = useState(false)
+
+  const scatterChartRef = useRef(null)
 
   const subscribeHandler = () => {
-    const companyCopy = { ...company, isSubscribe: !company.isSubscribe };
-    props.setSubscribeStatus(company.id);
-    setCompany(companyCopy);
-  };
+    const companyCopy = { ...company, isSubscribe: !company.isSubscribe }
+    props.setSubscribeStatus(company.id)
+    setCompany(companyCopy)
+  }
 
-  const location = useLocation();
+  const location = useLocation()
 
   useEffect(() => {
     const goodResponse = data => {
       if (data.length > 0) {
-        props.setCompanies(data);
+        props.setCompanies(data)
       }
-    };
-    getApiRequest(`${PrefixUrl}services/`, null, goodResponse);
+    }
+    getApiRequest(`${PrefixUrl}services/`, null, goodResponse)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [])
 
   useEffect(() => {
-    let company_link = location.pathname.slice(1);
-    setCompany(getCompanyData(company_link, props.companies.companies));
-    setIsSendReportsRequest(false);
-  }, [location.pathname, props.companies]);
+    let company_link = location.pathname.slice(1)
+    setCompany(getCompanyData(company_link, props.companies.companies))
+    setIsSendReportsRequest(false)
+  }, [location.pathname, props.companies])
 
   // отправление запроса на получение данных о состоянии сервиса, если данных нет, то остаются старые
   useEffect(() => {
@@ -253,29 +258,33 @@ function CompanyPage(props) {
         !company?.dataGraphPerHour ||
         company.dataGraphPerHour.data.length === 0
       ) {
-        props.setStatusData(graphData, company.id);
+        props.setStatusData(graphData, company.id)
       } else {
         if (!isSendReportsRequest) {
           const goodResponse = data => {
             if (data.length > 0) {
-              props.setStatusData(data, company.id);
+              props.setStatusData(data, company.id)
             }
-          };
-          setIsSendReportsRequest(true);
+          }
+          setIsSendReportsRequest(true)
           getApiRequest(
             `${PrefixUrl}services/${company.id}/reports/`,
             null,
             goodResponse
-          );
+          )
         }
       }
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [company.id, props]);
+  }, [company.id, props])
 
   if (company == null) {
-    return <CircularProgress isIndeterminate color="green.300" mx="auto" />;
+    return <CircularProgress isIndeterminate color="green.300" mx="auto" />
+  }
+
+  const resetZoom = () => {
+    scatterChartRef.current.resetZoom()
   }
 
   return (
@@ -329,6 +338,20 @@ function CompanyPage(props) {
         >
           <LineGraph data={company.dataGraphPerHour} />
         </Box>
+        <Box
+          mb="8"
+          mx={{ base: 'auto', lg: '4' }}
+          maxW="600px"
+          w="100%"
+          bg="white"
+        >
+          <ScatterGraph ref={scatterChartRef} />
+          <Center py={4}>
+            <Button colorScheme="red" size="xs" onClick={resetZoom}>
+              Сбросить
+            </Button>
+          </Center>
+        </Box>
       </Flex>
 
       <Divider borderTop="1px solid white" />
@@ -364,47 +387,47 @@ function CompanyPage(props) {
         </Button>
       </Flex>
     </VStack>
-  );
+  )
 }
 
 let mapStateToProps = state => {
   return {
     companies: state.companies,
-  };
-};
+  }
+}
 
 let mapDispatchToProps = dispatch => {
   return {
     setSubscribeStatus: companyId => {
-      dispatch(setCompanySubscribeStatusAC(companyId));
+      dispatch(setCompanySubscribeStatusAC(companyId))
     },
     setReportTime: (companyId, time) => {
-      dispatch(setReportTimeAC(companyId, time));
+      dispatch(setReportTimeAC(companyId, time))
     },
     setStatusData: (reportsData, cId) => {
-      dispatch(setStatusDataAC(reportsData, cId));
+      dispatch(setStatusDataAC(reportsData, cId))
     },
     setCompanies: companies => {
-      dispatch(setCompaniesAC(companies));
+      dispatch(setCompaniesAC(companies))
     },
-  };
-};
+  }
+}
 const CompanyPageContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(CompanyPage);
+)(CompanyPage)
 
-export default CompanyPageContainer;
+export default CompanyPageContainer
 
 const getCompanyData = (company_link, companies) => {
-  let right_company = {};
+  let right_company = {}
   if (companies == null || companies.length < 1) {
-    return right_company;
+    return right_company
   }
   companies.forEach(company => {
     if (company.link === company_link) {
-      right_company = company;
+      right_company = company
     }
-  });
-  return right_company;
-};
+  })
+  return right_company
+}
