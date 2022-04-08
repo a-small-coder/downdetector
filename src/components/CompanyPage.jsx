@@ -328,16 +328,6 @@ function CompanyPage(props) {
         >
           <LineGraph data={company.dataGraphPerDay} />
         </Box>
-
-        <Box
-          mb="8"
-          mx={{ base: 'auto', lg: '4' }}
-          maxW="600px"
-          w="100%"
-          bg="white"
-        >
-          <LineGraph data={company.dataGraphPerHour} />
-        </Box>
         <Box
           mb="8"
           mx={{ base: 'auto', lg: '4' }}
