@@ -1,5 +1,5 @@
 import * as axios from 'axios'
-const SERVER_API_START_URL = "http://84.201.141.26/api/"
+const SERVER_API_START_URL = "http://51.250.17.208/api/"
 
 export default SERVER_API_START_URL
 
